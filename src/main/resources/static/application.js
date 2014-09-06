@@ -50,10 +50,29 @@ function getWinner(callback, prizeId, drawId)
         type: "GET",
         contentType: 'application/json',
         dataType: "json",
-        data: {"event_id": eventId, "prize_id": prizeId},
+        data: {"draw_id": drawId, "prize_id": prizeId},
         complete: function(){},
         success: function(data){
+            console.log(data);
             callback(data, prizeId);
+        },
+        error: function(data, textStatus, xhr){
+
+        }
+    });
+}
+
+function accept(callback, prizeId, drawId, memberId, accepted)
+{
+    $.ajax({
+        url: "/randomize/get_participant",
+        cache: false,
+        type: "GET",
+        contentType: 'application/json',
+        dataType: "json",
+        data: {"draw_id": drawId, "prize_id": prizeId, "participant_id":memberId, "accepted":accepted},
+        complete: function(){},
+        success: function(data){
         },
         error: function(data, textStatus, xhr){
 
@@ -91,6 +110,16 @@ function getNextPrize()
 
     currentPrizeIndex = -1;
     return;
+}
+
+function yesClick()
+{
+    prizes[currentPrizeIndex].amount -= 1;
+    accept(null,prizes[currentPrizeIndex].id,drawId,true);
+}
+function noClick()
+{
+    accept(null,prizes[currentPrizeIndex].id,drawId,false);
 }
 
 function getPrizes(callback)

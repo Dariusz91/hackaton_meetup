@@ -165,8 +165,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a  class="gray-button button">Zatwierdź</a>
-                <a  class="orange-button button pull-right" data-dismiss="modal">Odrzuć</a>
+                <a id="yes_button" class="gray-button button">Zatwierdź</a>
+                <a id="no_button"  class="orange-button button pull-right" data-dismiss="modal">Odrzuć</a>
             </div>
         </div>
     </div>
@@ -242,6 +242,15 @@
 
 <script>
     var prizesLoaded = false;
+    var firstDraw = true;
+    $("#yes_button").click(function(event){
+        yesClick();
+        event.preventDefault();
+    });
+    $("#no_button").click(function(event){
+        noClick();
+        event.preventDefault();
+    });
     $("#userListModal").on('show.bs.modal', function(){
         getParticipants(processParticipants, eventId, appKey);
     });
@@ -254,6 +263,26 @@
         else
         {
             processPrizesFromArray();
+        }
+    });
+    $("#winnerModal").on('show.bs.modal', function(){
+        if(firstDraw == true) {
+            getFirstDraw(eventId);
+            firstDraw = false;
+        }
+        else
+        {
+            if(currentPrizeIndex == -1)
+            {
+                return;
+            }
+            getNextPrize();
+            if(currentPrizeIndex == -1)
+            {
+                return;
+            }
+
+            getWinner(showWinner, prizes[currentPrizeIndex].id, drawId);
         }
     });
     $("#btn_add_prize").click(function(){
