@@ -7,11 +7,16 @@ body, html {
     font-weight: 400;
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
+    background: #f4f4f4 !important;
 }
 
 .pull-right{
     float: right;
+}
+
+a{
+    text-decoration: none !important;
+    cursor: pointer !important;
 }
 
 .main-content{
@@ -48,6 +53,25 @@ body, html {
     font-size: 16px;
 }
 
+.red-button{
+    -webkit-box-shadow: #851518 0 2px 0 0;
+    box-shadow: #851518 0 2px 0 0;
+    color: #fff;
+    background: #e0393e;
+    padding: 7px 18px 5px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-bottom: 18px;
+    font-family: Whitney,helvetica,arial,sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.red-button:hover{
+    background: #d02126;
+    color: #fff;
+}
+
 .simple-navi-panel .red-button:hover{
     background: #d02126;
 }
@@ -78,6 +102,10 @@ body, html {
     font-weight: 700;
     font-size: 16px;
     text-decoration: none;
+}
+
+.orange-button:hover{
+    background: #E08638 !important;
 }
 
 .simple-navi-panel .gray-button:hover{

@@ -5,9 +5,12 @@
     <title>Hello Spring Boot!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../../static/insstyle.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <script src="../../static/jquery-1.11.1.min.js"></script>
-    <script src="../../static/jquery.popupoverlay.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -18,8 +21,8 @@
 <div class="main-content">
     <div class="simple-navi-panel">
         <a class="button red-button" href="">Losuj</a>
-        <a class="button gray-button pull-right" href="">Lista nagród</a>
-        <a class="fadeandscale_open button gray-button pull-right" href="#fadeandscale">Pobierz uczestników</a>
+        <a class="button gray-button pull-right" data-toggle="modal" data-target="#prizeListModal">Lista nagród</a>
+        <a class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Pobierz uczestników</a>
     </div>
 
     <div class="divider">
@@ -88,42 +91,67 @@
             htmlElement.append(); //TODO Add content
         }
     }
-
-    $(document).ready(function () {
-
-        $('#fadeandscale').popup({
-            pagecontainer: '.container',
-            transition: 'all 0.3s'
-        });
-
-    });
-
 </script>
 
-<!-- Users list Popup -->
-
-<div id="fadeandscale" class="well">
-    <h4>Lista użytkowników</h4>
-    <ul class="fa-ul user-list">
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>John Doe</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Jan Kowalski</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Pan Tadeusz</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Miś Puchatek</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Zorro</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Kasia Kowalska</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Jaś i Małgosia</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Trolo Lolo</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>John Doe</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Jan Kowalski</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Pan Tadeusz</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Miś Puchatek</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Zorro</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Kasia Kowalska</li>
-        <li><i class="fa-li fa fa-arrow-circle-right"></i>Jaś i Małgosia</li>
-    </ul>
-    <a class="fadeandscale_close button orange-button pull-right" href="">Zamknij</a>
+<!-- User List Modal -->
+<div class="modal fade" id="userListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lista użytkowników</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="fa-ul user-list">
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>John Doe</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Jan Kowalski</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Pan Tadeusz</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Miś Puchatek</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Zorro</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Kasia Kowalska</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Jaś i Małgosia</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Trolo Lolo</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>John Doe</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Jan Kowalski</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Pan Tadeusz</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Miś Puchatek</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Zorro</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Kasia Kowalska</li>
+                    <li><i class="fa-li fa fa-arrow-circle-right"></i>Jaś i Małgosia</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a  class="orange-button button" data-dismiss="modal">Zamknij</a>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- Prize List Modal -->
+<div class="modal fade" id="prizeListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lista nagród</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="prize-list">
+                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square"></i>1<i class="fa fa-plus-square"></i></span></li>
+                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square"></i>1<i class="fa fa-plus-square"></i></span></li>
+                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square"></i>1<i class="fa fa-plus-square"></i></span></li>
+                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square"></i>1<i class="fa fa-plus-square"></i></span></li>
+                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square"></i>1<i class="fa fa-plus-square"></i></span></li>
+                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square"></i>1<i class="fa fa-plus-square"></i></span></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a  class="orange-button button pull-right" data-dismiss="modal">Zamknij</a>
+                <a  class="red-button button" data-dismiss="modal">Dodaj nagrodę</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
