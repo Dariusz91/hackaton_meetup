@@ -1,7 +1,7 @@
 function getParticipants(callback, eventId, appKey)
 {
     $.ajax({
-        url: "", //TODO Add url
+        url: "/users",
         cache: false,
         type: "GET",
         dataType: "json",
