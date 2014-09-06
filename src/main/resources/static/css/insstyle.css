@@ -222,9 +222,35 @@ a{
 }
 
 .prize-list li{
-    line-height: 2;
+    line-height: 4;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 1px dashed #eee;
 }
 
 .prize-list li .fa{
     padding: 5px;
+}
+
+#prizeListModal ul{
+    list-style: none;
+}
+
+#prizeListModal .prize-amount{
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#prizeListModal .counter{
+    max-height: 50px;
+}
+
+#inputPrizeName{
+    margin-top: 5px;
+}
+
+.add-prize-button{
+    width: 100%;
+    text-align: center;
 }

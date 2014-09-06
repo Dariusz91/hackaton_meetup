@@ -104,7 +104,7 @@
 
 <!-- Prize List Modal -->
 <div class="modal fade" id="prizeListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -112,17 +112,29 @@
             </div>
             <div class="modal-body">
                 <ul class="prize-list">
-                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square fa-2x"></i>1<i class="fa fa-plus-square fa-2x"></i></span></li>
-                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square fa-2x"></i>1<i class="fa fa-plus-square fa-2x"></i></span></li>
-                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square fa-2x"></i>1<i class="fa fa-plus-square fa-2x"></i></span></li>
-                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square fa-2x"></i>1<i class="fa fa-plus-square fa-2x"></i></span></li>
-                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square fa-2x"></i>1<i class="fa fa-plus-square fa-2x"></i></span></li>
-                    <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square fa-2x"></i>1<i class="fa fa-plus-square fa-2x"></i></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
                 </ul>
             </div>
             <div class="modal-footer">
+                <div class="row">
+                    <form method="post" action="" name="prizeForm" id="prizeForm" >
+                        <fieldset>
+                            <div class="col-md-9">
+                                <input type="text" name="prizeName" value="" class="form-control pull-left" id="inputPrizeName" placeholder="Podaj nazwę nagrody" />
+                            </div>
+                            <div class="col-md-3">
+                                <a  class="red-button add-prize-button button pull-right" type="submit">Dodaj nagrodę</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
                 <a  class="orange-button button pull-right" data-dismiss="modal">Zamknij</a>
-                <a  class="red-button button" data-dismiss="modal">Dodaj nagrodę</a>
             </div>
         </div>
     </div>
