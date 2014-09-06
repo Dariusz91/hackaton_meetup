@@ -224,7 +224,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel5">Historia losowań:</h4>
+                <h4 class="modal-title" id="myModalLabel5">Uwaga:</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -242,7 +242,6 @@
 
 <script>
     var prizesLoaded = false;
-    var firstDraw = true;
     $("#userListModal").on('show.bs.modal', function(){
         getParticipants(processParticipants, eventId, appKey);
     });
@@ -255,23 +254,6 @@
         else
         {
             processPrizesFromArray();
-        }
-    });
-    $("#winnerModal").on('show.bs.modal', function(){
-        if(firstDraw == true) {
-            getFirstDraw(eventId);
-            firstDraw = false;
-        }
-        else
-        {
-
-            getNextPrize();
-            if(currentPrizeIndex == -1)
-            {
-                return;
-            }
-
-            getWinner(showWinner, prizes[currentPrizeIndex].id, drawId);
         }
     });
     $("#btn_add_prize").click(function(){
