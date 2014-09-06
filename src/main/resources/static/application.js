@@ -84,14 +84,16 @@ var winnerId;
 var currentPrizeIndex = 0;
 function showWinner(data, prizeId)
 {
-    var memberId = data.member_id;
+    var memberId = data.participant_id;
     winnerId = memberId;
+    console.log(winnerId);
+    console.log(participants);
     var index = findParticipantIndex(memberId);
     $(".winner-name").empty();
     $(".winner-name").append(participants[index].name);
     var prizeIndex = findPrizeIndex(prizeId);
     $(".prize-name").empty();
-    $(".prize-name").append(prizes[index].name);
+    $(".prize-name").append(prizes[currentPrizeIndex].name);
 }
 
 function getNextPrize()
@@ -106,9 +108,10 @@ function getNextPrize()
                 return;
             }
         }
+
+        currentPrizeIndex = -1;
     }
 
-    currentPrizeIndex = -1;
     return;
 }
 
@@ -116,6 +119,7 @@ function yesClick()
 {
     prizes[currentPrizeIndex].amount -= 1;
     accept(null,prizes[currentPrizeIndex].id,drawId,true);
+    getNextPrize();
 }
 function noClick()
 {
@@ -212,7 +216,7 @@ function findParticipantIndex(participantId)
 {
     for(var i = 0; i < participants.length; ++i)
     {
-        if(participants[i].memberId == participantId)
+        if(participants[i].member_id == participantId)
         {
             return i;
         }

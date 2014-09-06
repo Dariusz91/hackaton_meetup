@@ -20,7 +20,7 @@
     <div class="simple-navi-panel">
         <a class="button red-button" data-toggle="modal" data-target="#winnerModal">Losuj</a>
         <a class="button gray-button pull-right" data-toggle="modal" data-target="#prizeListModal">Lista nagród</a>
-        <a class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Pobierz uczestników</a>
+        <a id="draw_button" class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Pobierz uczestników</a>
     </div>
 
     <div class="divider">
@@ -154,18 +154,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <span class="winner-name">
-                            John Doe
+                            INICJALIZACJA
                         </span>
                     </div>
                     <div class="col-md-6">
                         <span class="prize-name">
-                            Kalesony
+
                         </span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <a id="yes_button" class="gray-button button">Zatwierdź</a>
+                <a id="yes_button" class="gray-button button"  data-dismiss="modal">Zatwierdź</a>
                 <a id="no_button"  class="orange-button button pull-right" data-dismiss="modal">Odrzuć</a>
             </div>
         </div>
@@ -269,20 +269,29 @@
         if(firstDraw == true) {
             getFirstDraw(eventId);
             firstDraw = false;
+            getNextPrize();
         }
         else
         {
             if(currentPrizeIndex == -1)
             {
-                return;
-            }
-            getNextPrize();
-            if(currentPrizeIndex == -1)
-            {
+                $(".winner-name").empty();
+                $(".winner-name").append("BRAK NAGRÓD");
+                $(".prize-name").empty();
+                $("#draw_button").attr("data-target", "#endModal");
                 return;
             }
 
             getWinner(showWinner, prizes[currentPrizeIndex].id, drawId);
+            getNextPrize();
+            if(currentPrizeIndex == -1)
+            {
+                $(".winner-name").empty();
+                $(".winner-name").append("BRAK NAGRÓD");
+                $(".prize-name").empty();
+                return;
+            }
+
         }
     });
     $("#btn_add_prize").click(function(){

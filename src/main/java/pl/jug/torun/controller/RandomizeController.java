@@ -34,7 +34,7 @@ public class RandomizeController {
     @Autowired
     private ParticipantRepository participantRepository;
 
-    @RequestMapping(value = "/randomize/get_participant", method = RequestMethod.POST)
+    @RequestMapping(value = "/randomize/get_participant")
     @ResponseBody
     public HttpEntity<String> randomizeParticipant(@RequestParam Map<String, String> params) {
         HttpHeaders headers = HeaderProvider.createHeaders();
@@ -62,7 +62,7 @@ public class RandomizeController {
         return new HttpEntity<>("{\"participant_id\":" + participant.getMemberId() + "}", headers);
     }
 
-    @RequestMapping(value = "/randomize/accept", method = RequestMethod.POST)
+    @RequestMapping(value = "/randomize/accept")
     @ResponseBody
     public HttpEntity<String> acceptAward(@RequestParam Map<String, String> params) {
         HttpHeaders headers = HeaderProvider.createHeaders();
