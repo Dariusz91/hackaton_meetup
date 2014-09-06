@@ -20,6 +20,79 @@ function getParticipants(callback, eventId, appKey)
     });
 }
 
+function getFirstDraw(eventId)
+{
+    $.ajax({
+        url: "/draw/start",
+        cache: false,
+        type: "POST",
+        contentType: 'application/json',
+        dataType: "json",
+        processData: false,
+        data: JSON.stringify({"event_id": eventId, "prizes": prizes, "participants": participants}),
+        complete: function(){},
+        success: function(data){
+
+                drawId = data.id;
+            console.log(drawId);
+        },
+        error: function(data, textStatus, xhr){
+
+        }
+    });
+}
+
+function getWinner(callback, prizeId, drawId)
+{
+    $.ajax({
+        url: "/randomize/get_participant",
+        cache: false,
+        type: "GET",
+        contentType: 'application/json',
+        dataType: "json",
+        data: {"event_id": eventId, "prize_id": prizeId},
+        complete: function(){},
+        success: function(data){
+            callback(data, prizeId);
+        },
+        error: function(data, textStatus, xhr){
+
+        }
+    });
+}
+
+var winnerId;
+var currentPrizeIndex = 0;
+function showWinner(data, prizeId)
+{
+    var memberId = data.member_id;
+    winnerId = memberId;
+    var index = findParticipantIndex(memberId);
+    $(".winner-name").empty();
+    $(".winner-name").append(participants[index].name);
+    var prizeIndex = findPrizeIndex(prizeId);
+    $(".prize-name").empty();
+    $(".prize-name").append(prizes[index].name);
+}
+
+function getNextPrize()
+{
+    if(prizes[currentPrizeIndex].amount <= 0)
+    {
+        for(var i = currentPrizeIndex + 1; i < prizes.length; ++i)
+        {
+            if(prizes[i].amount > 0)
+            {
+                currentPrizeIndex = i;
+                return;
+            }
+        }
+    }
+
+    currentPrizeIndex = -1;
+    return;
+}
+
 function getPrizes(callback)
 {
     $.ajax({
@@ -104,6 +177,7 @@ var appKey = localStorage.getItem("appKey");
 appKey = "781d47243d1f565a64a4e7b354e6358";
 var participants = new Array();
 var prizes = new Array();
+var drawId;
 
 function findParticipantIndex(participantId)
 {
@@ -137,8 +211,9 @@ function processParticipants(participantsJson)
     participants = new Array();
     participantsJson.participants.forEach(function(participantJson){
         var participant = Object.create(null);
-        participant.memberId = participantJson.member_id;
+        participant.member_id = participantJson.member_id;
         participant.name = participantJson.name;
+        participant.id = participantJson.id;
         participants.push(participant);
         $("#user_list").append("<li><i class='fa-li fa fa-arrow-circle-right'></i>"+ participant.name +"</li>")
     });
@@ -231,4 +306,6 @@ function addParticipantsToView(htmlElement)
         htmlElement.append(); //TODO Add content
     }
 }
+
+
 
