@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.repository.ParticipantRepository;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 public class ParticipantCreationService {
@@ -14,16 +14,27 @@ public class ParticipantCreationService {
     @Autowired
     private ParticipantRepository participantRepository;
 
-    public void createParticipantsIfNotExists(List<Participant> participants) {
-        List<Participant> inDb = participantRepository.findAll();
+    public List<Participant> createParticipantsIfNotExists(List<Participant> participants) {
 
-        Stream<Participant> toCreate = participants.stream().filter(p -> !inDb.contains(p));
+        List<Participant> results = new ArrayList<>();
 
-        createNonExisting(toCreate);
+        for (Participant participant : participants) {
+            Participant p = getParticipantsOrCreateIfNotExist(participant);
+            results.add(p);
+        }
+
+        return results;
     }
 
-    private void createNonExisting(Stream<Participant> toCreate) {
-        toCreate.forEach(participantRepository::save);
+    private Participant getParticipantsOrCreateIfNotExist(Participant participant) {
+        Participant fromDb = participantRepository.findByMemberId(participant.getMemberId());
+
+        if (fromDb != null) {
+            return fromDb;
+        } else {
+            participantRepository.save(participant);
+            return participant;
+        }
     }
 
 }
