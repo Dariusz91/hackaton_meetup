@@ -77,7 +77,7 @@
                 <h4 class="modal-title" id="myModalLabel">Lista użytkowników</h4>
             </div>
             <div class="modal-body">
-                <ul class="fa-ul user-list">
+                <ul id="user_list" class="fa-ul user-list">
                     <li><i class="fa-li fa fa-arrow-circle-right"></i>John Doe</li>
                     <li><i class="fa-li fa fa-arrow-circle-right"></i>Jan Kowalski</li>
                     <li><i class="fa-li fa fa-arrow-circle-right"></i>Pan Tadeusz</li>
@@ -111,7 +111,7 @@
                 <h4 class="modal-title" id="myModalLabel2">Lista nagród</h4>
             </div>
             <div class="modal-body">
-                <ul class="prize-list">
+                <ul id="prize_list" class="prize-list">
                     <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square"></i>1<i class="fa fa-plus-square"></i></span></li>
                     <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square"></i>1<i class="fa fa-plus-square"></i></span></li>
                     <li>Licencja IntelliJ IDEA 13<span class="pull-right"><i class="fa fa-minus-square"></i>1<i class="fa fa-plus-square"></i></span></li>
@@ -130,8 +130,10 @@
 
 <script>
     $("#userListModal").on('show.bs.modal', function(){
-        console.log("hello btn");
         getParticipants(processParticipants, eventId, appKey);
+    });
+    $("#prizeListModal").on('show.bs.modal', function(){
+        getPrizes(processPrizes);
     });
 </script>
 
