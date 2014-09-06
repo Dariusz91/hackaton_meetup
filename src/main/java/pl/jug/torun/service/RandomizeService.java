@@ -10,7 +10,6 @@ import pl.jug.torun.domain.ReceivedPrize;
 import pl.jug.torun.repository.ReceivedPrizeRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -21,19 +20,6 @@ public class RandomizeService {
 
     @Autowired
     private ReceivedPrizeRepository receivedPrizeRepository;
-
-    public Optional<PrizeDefinition> getNextPrize(Draw draw) {
-        if (draw.getRemainingPrizes().size() > 0) {
-            return Optional.of(draw.getRemainingPrizes().get(0));
-        } else {
-            return Optional.empty();
-        }
-
-    }
-
-    public Participant randomParticipant(Draw draw) {
-        return randomParticipant(draw, getNextPrize(draw).get());
-    }
 
     public Participant randomParticipant(Draw draw, PrizeDefinition prizeDefinition) {
         return getParticipant(draw, prizeDefinition);

@@ -59,7 +59,7 @@ public class PrizeAcceptanceServiceTest extends AbstractTransactionalJUnit4Sprin
 
     @Test
     public void shouldDeleteParticipantAfterAccept() {
-        prizeAcceptanceService.acceptParticipant(firstParticipant, draw);
+        prizeAcceptanceService.acceptParticipant(firstParticipant, draw, firstPrize);
 
         assertFalse(draw.getRemainingParticipants().contains(firstParticipant));
     }
@@ -73,7 +73,7 @@ public class PrizeAcceptanceServiceTest extends AbstractTransactionalJUnit4Sprin
 
     @Test
     public void shouldDeletePrizeAfterAccept() {
-        prizeAcceptanceService.acceptParticipant(firstParticipant, draw);
+        prizeAcceptanceService.acceptParticipant(firstParticipant, draw, firstPrize);
 
         assertFalse(draw.getRemainingPrizes().contains(firstPrize));
     }
@@ -87,7 +87,7 @@ public class PrizeAcceptanceServiceTest extends AbstractTransactionalJUnit4Sprin
 
     @Test
     public void shouldCreateReceivedPrizeAfterAcceptance() {
-        prizeAcceptanceService.acceptParticipant(firstParticipant, draw);
+        prizeAcceptanceService.acceptParticipant(firstParticipant, draw, firstPrize);
 
         List<ReceivedPrize> receivedPrizes = receivedPrizeRepository.findAll();
         assertEquals(1, receivedPrizes.size());

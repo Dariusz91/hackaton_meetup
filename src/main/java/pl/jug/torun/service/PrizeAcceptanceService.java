@@ -20,9 +20,8 @@ public class PrizeAcceptanceService {
     @Autowired
     private ReceivedPrizeRepository receivedPrizeRepository;
 
-    public void acceptParticipant(Participant participant, Draw draw) {
+    public void acceptParticipant(Participant participant, Draw draw, PrizeDefinition prize) {
         draw.getRemainingParticipants().remove(participant);
-        PrizeDefinition prize = draw.getRemainingPrizes().get(0);
         draw.getRemainingPrizes().remove(prize);
 
         createReceivedPrize(participant, prize, draw);

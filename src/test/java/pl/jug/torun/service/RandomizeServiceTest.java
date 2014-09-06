@@ -16,10 +16,9 @@ import pl.jug.torun.domain.PrizeDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -63,20 +62,12 @@ public class RandomizeServiceTest extends AbstractTransactionalJUnit4SpringConte
     }
 
     @Test
-    public void shouldReturnFirstPrizeFromList() {
-        Optional<PrizeDefinition> result = randomizeService.getNextPrize(draw);
-
-        assertTrue(result.isPresent());
-        assertEquals(draw.getRemainingPrizes().get(0).getId(), result.get().getId());
-    }
-
-    @Test
     public void shouldNotReturnParticipantWhoAlreadyHaveSameAward() {
         builders.createReceivedPrize(draw, firstParticipant, firstPrize);
         when(mockRandom.nextInt(anyInt())).thenReturn(0);
         Whitebox.setInternalState(randomizeService, "random", mockRandom);
 
-        Participant participant = randomizeService.randomParticipant(draw);
+        Participant participant = randomizeService.randomParticipant(draw, firstPrize);
 
         assertNotEquals(participant.getId(), firstParticipant.getId());
     }
