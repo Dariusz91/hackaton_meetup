@@ -41,6 +41,31 @@ function getPrizes(callback)
     });
 }
 
+function addPrize(callback, prize)
+{
+    $.ajax({
+        url: "/prizes/add",
+        cache: false,
+        type: "GET",
+        dataType: "json",
+        data: {"name": prize.name},
+        complete: function(){},
+        success: function(data){
+            if(callback != null) {
+                var prizeJson = Object.create(null);
+                prizeJson.name = prize.name;
+                prizeJson.id = data.id;
+                callback(prizeJson);
+            }
+        },
+        error: function(data, textStatus, xhr){
+            if(callback != null) {
+                callback(false);
+            }
+        }
+    });
+}
+
 function getMemberInfo(callback, userId, appKey)
 {
     $.ajax({
@@ -102,8 +127,17 @@ function processPrizes(prizesJson)
         prize.id = prizeJson.id;
         prize.name = prizeJson.name;
         prizes.push(prize);
-        $("#prize_list").append("<li>"+prize.name+"<span class='pull-right'><i class='fa fa-minus-square'></i>1<i class='fa fa-plus-square'></i></span></li>")
+        $("#prize_list").append("<li id='"+ prize.id +"'>"+prize.name+"<span class='pull-right'><i class='fa fa-minus-square'></i>1<i class='fa fa-plus-square'></i></span></li>");
     });
+}
+
+function processAddPrize(prizeJson)
+{
+    var prize = Object.create(null);
+    prize.id = prizeJson.id;
+    prize.name = prizeJson.name;
+    prizes.push(prize);
+    $("#prize_list").append("<li id='"+ prize.id +"'>"+prize.name+"<span class='pull-right'><i class='fa fa-minus-square'></i>1<i class='fa fa-plus-square'></i></span></li>");
 }
 
 function addParticipantsToView(htmlElement)
