@@ -40,14 +40,7 @@ public class RandomizeService {
     }
 
     public Participant randomParticipant(Draw draw, PrizeDefinition prizeDefinition) {
-        Participant participant = getParticipant(draw, prizeDefinition);
-
-        draw.getRemainingPrizes().remove(prizeDefinition);
-        draw.getRemainingParticipants().remove(participant);
-
-        drawRepository.save(draw);
-
-        return participant;
+        return getParticipant(draw, prizeDefinition);
     }
 
     private Participant getParticipant(Draw draw, PrizeDefinition prizeDefinition) {
