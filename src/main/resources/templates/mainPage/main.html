@@ -7,14 +7,22 @@
     <link href="../../static/insstyle.css" rel="stylesheet">
 </head>
 <body>
+
 <div th:text="test">
 
 </div>
 
-<div class="simple-navi-panel">
-    <a id="button" class="red-button" href="">Losuj</a>
-    <a id="button" class="gray-button" href="">Lista nagród</a>
-    <a id="button" class="gray-button" href="">Pobierz uczestników</a>
+<div class="main-content">
+    <div class="simple-navi-panel">
+        <a class="button red-button" href="">Losuj</a>
+        <a class="button gray-button pull-right" href="">Lista nagród</a>
+        <a class="button gray-button pull-right" href="">Pobierz uczestników</a>
+    </div>
+    <div class="divider">
+    </div>
+    <div class="random-users">
+        <h2 id="randomUsersHeader">Wylosowano:</h2>
+    </div>
 </div>
 
 

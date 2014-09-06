@@ -10,21 +10,36 @@ body, html {
     background: #f4f4f4;
 }
 
-#button {
+.pull-right{
+    float: right;
+}
+
+.main-content{
+    width:542px;
+    height: 600px;
+    margin:0 auto;
+    padding: 18px 18px 0;
+    border-radius: 3px;
+    background-color: #fff;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+}
+
+.simple-navi-panel .button {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
-    font-size: 19px;
-    margin-bottom: 12px;
+    font-size: 16px;
+    margin: 5px;
 }
 
 .simple-navi-panel .red-button{
     -webkit-box-shadow: #851518 0 2px 0 0;
     box-shadow: #851518 0 2px 0 0;
-    color: #fff!important;
+    color: #fff;
     background: #e0393e;
-    padding: 9px 18px 7px;
+    padding: 7px 18px 5px;
     display: inline-block;
     border-radius: 3px;
     margin-bottom: 18px;
@@ -40,11 +55,11 @@ body, html {
 .simple-navi-panel .gray-button{
     -webkit-box-shadow: rgba(0,0,0,.47) 0 2px 0 0;
     box-shadow: rgba(0,0,0,.47) 0 2px 0 0;
-    color: #fff!important;
+    color: rgba(0,0,0,.67);
     background: rgba(0,0,0,.1);
     display: inline-block;
     border-radius: 3px;
-    padding: 9px 18px 7px;
+    padding: 7px 18px 5px;
     margin-bottom: 18px;
     font-family: Whitney,helvetica,arial,sans-serif;
     font-weight: 700;
@@ -52,10 +67,27 @@ body, html {
 }
 
 .simple-navi-panel .gray-button:hover{
-    background: #d02126;
+    background: rgba(0,0,0,.16);
 }
 
 .simple-navi-panel a{
     text-decoration: none;
     cursor: pointer;
+}
+
+.random-users h2{
+    font-size: 28px;
+    color: #0d0d0d;
+    color: rgba(0,0,0,.95);
+    font-family: Whitney,helvetica,arial,sans-serif;
+    margin: 0;
+    padding: 0 0 9px;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.divider{
+    border-bottom: 1px solid #ccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
