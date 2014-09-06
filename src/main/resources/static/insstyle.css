@@ -38,8 +38,8 @@ body, html {
 }
 
 .simple-navi-panel .gray-button{
-    -webkit-box-shadow: #851518 0 2px 0 0;
-    box-shadow: #851518 0 2px 0 0;
+    -webkit-box-shadow: rgba(0,0,0,.47) 0 2px 0 0;
+    box-shadow: rgba(0,0,0,.47) 0 2px 0 0;
     color: #fff!important;
     background: rgba(0,0,0,.1);
     display: inline-block;
