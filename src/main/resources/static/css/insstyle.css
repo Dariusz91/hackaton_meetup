@@ -220,3 +220,11 @@ a{
     padding-left: 20px;
     margin-top: 15px;
 }
+
+.prize-list li{
+    line-height: 2;
+}
+
+.prize-list li .fa{
+    padding: 5px;
+}
