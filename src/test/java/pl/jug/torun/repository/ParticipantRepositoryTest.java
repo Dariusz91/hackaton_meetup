@@ -7,6 +7,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.jug.torun.Application;
+import pl.jug.torun.builders.ComponentBuilders;
 import pl.jug.torun.domain.Participant;
 
 import static org.junit.Assert.*;
@@ -19,10 +20,13 @@ public class ParticipantRepositoryTest extends AbstractTransactionalJUnit4Spring
     @Autowired
     private ParticipantRepository participantRepository;
 
+    @Autowired
+    private ComponentBuilders builders;
+
     @Test
     public void shouldFindUserByMemberId() {
-        Participant firstParticipant = createParticipant("1");
-        createParticipant("2");
+        Participant firstParticipant = builders.createParticipant("1");
+        builders.createParticipant("2");
 
         Participant result = participantRepository.findByMemberId(firstParticipant.getMemberId());
 
@@ -35,13 +39,5 @@ public class ParticipantRepositoryTest extends AbstractTransactionalJUnit4Spring
         Participant result = participantRepository.findByMemberId("nonExisting");
 
         assertNull(result);
-    }
-
-    private Participant createParticipant(String memberId) {
-        Participant participant = new Participant();
-        participant.setMemberId(memberId);
-        participantRepository.save(participant);
-
-        return participant;
     }
 }
