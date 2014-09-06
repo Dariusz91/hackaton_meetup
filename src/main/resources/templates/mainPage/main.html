@@ -63,6 +63,8 @@
             </tr>
         </table>
     </div>
+    <br />
+    <a class="button gray-button pull-right" data-toggle="modal" data-target="#historyModal">Zobacz historię losowań</a>
 
 </div>
 
@@ -163,7 +165,53 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a  class="gray-button button">Akceptuj</a>
+                <a  class="gray-button button">Zatwierdź</a>
+                <a  class="orange-button button pull-right" data-dismiss="modal">Odrzuć</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- History Modal -->
+<div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel4">Historia losowań:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">
+                                Toruń JUG #3
+                            </a>
+                            <span class="list-group-item">Janko Muzykant <span class="pull-right">Trąbka</span></span>
+                            <span class="list-group-item">Ciocia Mariola <span class="pull-right">Trąbka</span></span>
+                            <span class="list-group-item">Cristiano Ronaldo <span class="pull-right">Trąbka</span></span>
+                        </div>
+
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">
+                                Toruń JUG #4
+                            </a>
+                            <span class="list-group-item">Janko Muzykant <span class="pull-right">Trąbka</span></span>
+                            <span class="list-group-item">Cristiano Ronaldo <span class="pull-right">Trąbka</span></span>
+                        </div>
+
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">
+                                Toruń JUG #5
+                            </a>
+                            <span class="list-group-item">Janko Muzykant <span class="pull-right">Trąbka</span></span>
+                            <span class="list-group-item">Ciocia Mariola <span class="pull-right">Trąbka</span></span>
+                            <span class="list-group-item">Cristiano Ronaldo <span class="pull-right">Trąbka</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
                 <a  class="orange-button button pull-right" data-dismiss="modal">Anuluj</a>
             </div>
         </div>
