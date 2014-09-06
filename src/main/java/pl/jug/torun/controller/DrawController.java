@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.jug.torun.domain.Draw;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.domain.PrizeDefinition;
+import pl.jug.torun.repository.ParticipantRepository;
+import pl.jug.torun.repository.PrizeDefinitionRepository;
 import pl.jug.torun.service.DrawCreationService;
 
 import java.util.ArrayList;
@@ -23,6 +25,12 @@ public class DrawController {
 
     @Autowired
     private DrawCreationService drawCreationService;
+
+    @Autowired
+    private ParticipantRepository participantRepository;
+
+    @Autowired
+    private PrizeDefinitionRepository prizeDefinitionRepository;
 
     @RequestMapping("/draw/start")
     public String getPrizesAmount(@RequestBody String json) {
@@ -49,7 +57,11 @@ public class DrawController {
         List<Participant> participants = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.size(); i++) {
-            participants.add(gson.fromJson(jsonArray.get(i), Participant.class));
+            Participant participant = gson.fromJson(jsonArray.get(i), Participant.class);
+
+            Participant fromDb = participantRepository.findByMemberId(participant.getMemberId());
+
+            participants.add(fromDb);
         }
 
         return participants;
@@ -59,7 +71,11 @@ public class DrawController {
         List<PrizeDefinition> prizes = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.size(); i++) {
-            prizes.add(gson.fromJson(jsonArray.get(i), PrizeDefinition.class));
+            PrizeDefinition prize = gson.fromJson(jsonArray.get(i), PrizeDefinition.class);
+
+            PrizeDefinition fromDb = prizeDefinitionRepository.findOne(prize.getId());
+
+            prizes.add(fromDb);
         }
 
         return prizes;

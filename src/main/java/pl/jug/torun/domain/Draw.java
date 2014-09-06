@@ -1,6 +1,9 @@
 package pl.jug.torun.domain;
 
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -9,9 +12,11 @@ import java.util.List;
 public class Draw extends RootEntity {
 
     @OneToMany
+    @Cascade(CascadeType.REPLICATE)
     private List<PrizeDefinition> remainingPrizes;
 
     @OneToMany
+    @Cascade(CascadeType.REPLICATE)
     private List<Participant> remainingParticipants;
 
     private boolean enabled = true;
