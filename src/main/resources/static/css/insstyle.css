@@ -300,3 +300,8 @@ a{
     background-color: #505050 !important;
     border-color: #444444 !important;
 }
+
+.end-prize{
+    text-align: center;
+    font-size: 30px;
+}
