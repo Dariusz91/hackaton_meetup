@@ -91,3 +91,27 @@ body, html {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.random-users table, .random-users th, .random-users td {
+    border: 1px solid #fff;
+    border-collapse: collapse;
+}
+
+.random-users table .even{
+    background-color: #f7f7f7;
+}
+
+.random-users table{
+    margin-top: 20px;
+}
+
+.random-users tr{
+    background: #eee;
+}
+.random-users th, .random-users td {
+    padding: 10px 10px 10px 20px;
+}
+
+.random-users table tr:first-of-type{
+
+}
