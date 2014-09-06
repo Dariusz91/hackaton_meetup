@@ -1,0 +1,61 @@
+body, html {
+    color: #545454;
+    color: rgba(0,0,0,.67);
+    font-size: 16px;
+    line-height: 1.4;
+    font-family: Whitney,helvetica,arial,sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+#button {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.simple-navi-panel .red-button{
+    -webkit-box-shadow: #851518 0 2px 0 0;
+    box-shadow: #851518 0 2px 0 0;
+    color: #fff!important;
+    background: #e0393e;
+    padding: 9px 18px 7px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-bottom: 18px;
+    font-family: Whitney,helvetica,arial,sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.simple-navi-panel .red-button:hover{
+    background: #d02126;
+}
+
+.simple-navi-panel .gray-button{
+    -webkit-box-shadow: #851518 0 2px 0 0;
+    box-shadow: #851518 0 2px 0 0;
+    color: #fff!important;
+    background: rgba(0,0,0,.1);
+    display: inline-block;
+    border-radius: 3px;
+    padding: 9px 18px 7px;
+    margin-bottom: 18px;
+    font-family: Whitney,helvetica,arial,sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.simple-navi-panel .gray-button:hover{
+    background: #d02126;
+}
+
+.simple-navi-panel a{
+    text-decoration: none;
+    cursor: pointer;
+}
