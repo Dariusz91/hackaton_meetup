@@ -17,7 +17,7 @@ public class DrawCreationService {
     private DrawRepository drawRepository;
 
     @Transactional
-    public void createDraw(String eventId, List<PrizeDefinition> prizes, List<Participant> participants) {
+    public Draw createDraw(String eventId, List<PrizeDefinition> prizes, List<Participant> participants) {
         Draw draw = new Draw();
 
         draw.setEventId(eventId);
@@ -25,5 +25,7 @@ public class DrawCreationService {
         draw.setRemainingParticipants(participants);
 
         drawRepository.save(draw);
+
+        return draw;
     }
 }

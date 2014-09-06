@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.jug.torun.domain.Draw;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.domain.PrizeDefinition;
 import pl.jug.torun.service.DrawCreationService;
@@ -24,7 +25,7 @@ public class DrawController {
     private DrawCreationService drawCreationService;
 
     @RequestMapping("/draw/start")
-    public int getPrizesAmount(@RequestBody String json) {
+    public String getPrizesAmount(@RequestBody String json) {
 
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = parser.parse(json).getAsJsonObject();
@@ -36,9 +37,12 @@ public class DrawController {
         List<PrizeDefinition> prizes = jsonArrayToPrizes(prizesJsonArray);
         List<Participant> participants = jsonArrayToParticipants(participantsJsonArray);
 
-        drawCreationService.createDraw(eventId, prizes, participants);
+        Draw draw = drawCreationService.createDraw(eventId, prizes, participants);
 
-        return 200;
+        JsonObject drawJson = new JsonObject();
+        drawJson.addProperty("id", Long.toString(draw.getId()));
+
+        return drawJson.toString();
     }
 
     private List<Participant> jsonArrayToParticipants(JsonArray jsonArray) {
