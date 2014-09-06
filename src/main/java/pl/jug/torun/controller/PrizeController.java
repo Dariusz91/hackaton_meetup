@@ -23,7 +23,7 @@ public class PrizeController {
     @Autowired
     private PrizeDefinitionRepository prizeDefinitionRepository;
 
-    @RequestMapping("/prizes/add")
+    @RequestMapping("/prize/add")
     public int createPrize(@RequestParam Map<String, String> params) {
 
         if (!params.containsKey("name")) {
@@ -36,7 +36,7 @@ public class PrizeController {
         return 200;
     }
 
-    @RequestMapping("/prizes/get/all")
+    @RequestMapping("/prize/get/all")
     public String getAllPrizes() {
         List<PrizeDefinition> prizes = prizeDefinitionRepository.findAll();
         return convertToJson(prizes);

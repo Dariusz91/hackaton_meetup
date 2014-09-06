@@ -14,7 +14,7 @@ public class Draw extends RootEntity {
     @OneToMany
     private List<Participant> remainingParticipants;
 
-    private boolean enabled = false;
+    private boolean enabled = true;
 
     private String eventId;
 

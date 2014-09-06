@@ -1,18 +1,15 @@
 package pl.jug.torun.domain;
 
 
-import javax.persistence.Column;
-import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import pl.jug.torun.value.ParticipantSerializedNames;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
 public class Participant extends RootEntity {
-
-    private static Gson gson = new Gson();
 
     @Expose
     @SerializedName(ParticipantSerializedNames.MEMBER_ID_SERIALIZED_NAME)

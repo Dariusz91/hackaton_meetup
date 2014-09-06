@@ -33,7 +33,7 @@ public class ParticipantDownloadService {
         vars.put("event_id", eventId);
         vars.put("order", order);
 
-        return restTemplate.getForObject("http://api.meetup.com/2/rsvps?key={key}&event_id={event_id}&order=name",
+        return restTemplate.getForObject("http://api.meetup.com/2/rsvps?key={key}&event_id={event_id}&order={order} ",
                 String.class, vars);
     }
 
