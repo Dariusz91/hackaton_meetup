@@ -8,21 +8,19 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" th:href="@{http://getbootstrap.com/dist/css/bootstrap.min.css}" rel="stylesheet"/>
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" th:href="@{http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css}" rel="stylesheet"/>
     <script src="../../jquery-1.11.1.min.js" th:href="@{/jquery-1.11.1.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
+    <script src="../../application.js" th:href="@{/application.js}"></script>
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
+
 </head>
 <body>
-
-<div th:text="test">
-
-</div>
 
 <div class="main-content">
     <div class="simple-navi-panel">
         <a class="button red-button" href="">Losuj</a>
         <a class="button gray-button pull-right" data-toggle="modal" data-target="#prizeListModal">Lista nagród</a>
-        <a id="btn_get_users" class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Pobierz uczestników</a>
+        <a class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Pobierz uczestników</a>
     </div>
 
     <div class="divider">
@@ -131,33 +129,8 @@
 </div>
 
 <script>
-    var eventId = localStorage.getItem("eventId");
-    eventId = "201836452";
-    var appKey = localStorage.getItem("appKey");
-    appKey = "781d47243d1f565a64a4e7b354e6358";
-    var participants = new Array();
-
-    function processParticipants(participantsJson)
-    {
-        participantsJson.participants.forEach(function(participantJson){
-            var participant = Object.create(null);
-            participant.memberId = participantJson.memberId;
-            participant.name = participantJson.name;
-            participants.push(participant);
-            console.log(participant);
-        });
-    }
-
-    function addParticipantsToView(htmlElement)
-    {
-        for(var i = 0; i &lt; participants.length; ++i)
-        {
-            var name = participants[i].name;
-            htmlElement.append(); //TODO Add content
-        }
-    }
-
-    $("#btn_get_users").click(function(){
+    $("#userListModal").on('show.bs.modal', function(){
+        console.log("hello btn");
         getParticipants(processParticipants, eventId, appKey);
     });
 </script>
