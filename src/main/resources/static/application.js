@@ -107,16 +107,28 @@ var prizes = new Array();
 
 function findParticipantIndex(participantId)
 {
-    return participants.findIndex(function(element, index, array){
-       return element.memberId == participantId;
-    });
+    for(var i = 0; i < participants.length; ++i)
+    {
+        if(participants[i].memberId == participantId)
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 function findPrizeIndex(prizeId)
 {
-    return prizes.findIndex(function(element, index, array){
-        return element.id == prizeId;
-    });
+    for(var i = 0; i < prizes.length; ++i)
+    {
+        if(prizes[i].id == prizeId)
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 function processParticipants(participantsJson)
@@ -142,26 +154,62 @@ function processPrizes(prizesJson)
         prize.name = prizeJson.name;
         prize.amount = 0;
         prizes.push(prize);
-        $("#prize_list").append("<li id='"+prize.id+"'>" + prize.name + "<span class='pull-right counter'> <a href=''> <i class='fa fa-minus-square fa-2x'></i></a><span class='prize-amount'>0</span><a href=''><i class='fa fa-plus-square fa-2x'></i></a></span></li>");
+        $("#prize_list").append("<li id='"+prize.id+"'>" + prize.name + "<span class='pull-right counter'> <a class='minus_square' href='#'> <i class='fa fa-minus-square fa-2x'></i></a><span class='prize-amount'>"+prize.amount+"</span><a class='plus_square' href='#'><i class='fa fa-plus-square fa-2x'></i></a></span></li>");
+    });
+    setAmountEvents();
+}
+
+function processPrizesFromArray()
+{
+    $("#prize_list").empty();
+
+    prizes.forEach(function(prize){
+        $("#prize_list").append("<li id='"+prize.id+"'>" + prize.name + "<span class='pull-right counter'> <a class='minus_square' href='#'> <i class='fa fa-minus-square fa-2x'></i></a><span class='prize-amount'>"+prize.amount+"</span><a class='plus_square' href='#'><i class='fa fa-plus-square fa-2x'></i></a></span></li>");
+    });
+    setAmountEvents();
+}
+
+function setAmountEvents()
+{
+    $(".plus_square").click(function(event){
+        var el = $(this);
+        var prizeId = el.parent().parent().attr("id");
+
+        var amount = increasePrizeAmount(prizeId);
+
+        var amountEl = $("#" + prizeId + " .prize-amount");
+        amountEl.empty();
+        amountEl.append(amount);
+        event.preventDefault();
+    });
+    $(".minus_square").click(function(event){
+
+        var el = $(this);
+        var prizeId = el.parent().parent().attr("id");
+        var amount = decreasePrizeAmount(prizeId);
+        var amountEl = $("#" + prizeId + " .prize-amount");
+        amountEl.empty();
+        amountEl.append(amount);
+        event.preventDefault();
     });
 }
 
 function increasePrizeAmount(prizeId)
 {
     var prizeIndex = findPrizeIndex(prizeId);
-    if(prizes[prizeId].amount < 99) {
-        prizes[prizeId].amount += 1;
+    if(prizes[prizeIndex].amount < 99) {
+        prizes[prizeIndex].amount += 1;
     }
-    return prizes[prizeId].amount;
+    return prizes[prizeIndex].amount;
 }
 
 function decreasePrizeAmount(prizeId)
 {
     var prizeIndex = findPrizeIndex(prizeId);
-    if(prizes[prizeId].amount > 0) {
-        prizes[prizeId].amount -= 1;
+    if(prizes[prizeIndex].amount > 0) {
+        prizes[prizeIndex].amount -= 1;
     }
-    return prizes[prizeId].amount;
+    return prizes[prizeIndex].amount;
 }
 
 function processAddPrize(prizeJson)
@@ -171,7 +219,8 @@ function processAddPrize(prizeJson)
     prize.name = prizeJson.name;
     prize.amount = 0;
     prizes.push(prize);
-    $("#prize_list").append("<li id='"+prize.id+"'>" + prize.name + "<span class='pull-right counter'> <a href=''> <i class='fa fa-minus-square fa-2x'></i></a><span class='prize-amount'>0</span><a href=''><i class='fa fa-plus-square fa-2x'></i></a></span></li>");
+    $("#prize_list").append("<li id='"+prize.id+"'>" + prize.name + "<span class='pull-right counter'> <a class='minus_square' href='#'> <i class='fa fa-minus-square fa-2x'></i></a><span class='prize-amount'>"+prize.amount+"</span><a class='plus_square' href='#'><i class='fa fa-plus-square fa-2x'></i></a></span></li>");
+    setAmountEvents();
 }
 
 function addParticipantsToView(htmlElement)

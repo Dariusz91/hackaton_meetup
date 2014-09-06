@@ -171,31 +171,27 @@
 </div>
 
 <script>
+    var prizesLoaded = false;
     $("#userListModal").on('show.bs.modal', function(){
         getParticipants(processParticipants, eventId, appKey);
     });
     $("#prizeListModal").on('show.bs.modal', function(){
-        getPrizes(processPrizes);
-    });
-    $(".fa-plus-square").click(function(){
-       var el = $(this);
-       var prizeId = el.parent().parent().attr("id");
-       var amount = increasePrizeAmount(prizeId);
-        el.empty();
-        el.append(amount);
-    });
-    $(".fa-minus-square").click(function(){
-        var el = $(this);
-        var prizeId = el.parent().parent().attr("id");
-        var amount = decreasePrizeAmount(prizeId);
-        el.empty();
-        el.append(amount);
+        if(prizesLoaded == false)
+        {
+            getPrizes(processPrizes);
+            prizesLoaded = true;
+        }
+        else
+        {
+            processPrizesFromArray();
+        }
     });
     $("#btn_add_prize").click(function(){
         var prizeName = $("#inputPrizeName").val();
         var prize = Object.create(null);
         prize.name = prizeName;
         addPrize(processAddPrize, prize);
+        event.preventDefault();
     });
 </script>
 
