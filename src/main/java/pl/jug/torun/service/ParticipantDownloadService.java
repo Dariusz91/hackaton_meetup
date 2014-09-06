@@ -16,6 +16,7 @@ public class ParticipantDownloadService {
 
     private static final String RESULTS_NAME = "results";
     private static final String MEMBER_NAME = "member";
+    private static final String ON_GOING_NAME = "response";
 
     private static Gson gson = new Gson();
 
@@ -37,13 +38,13 @@ public class ParticipantDownloadService {
     }
 
     @Transactional
-    public List<Participant> downloadParticipants(String key, String eventId, String name) {
-        String response = get(key, eventId, name);
+    public List<Participant> downloadParticipants(String key, String eventId, String order) {
+        String response = get(key, eventId, order);
         return responseToParticipantList(response);
     }
 
     public List<Participant> responseToParticipantList(String json) {
-        JsonArray resultsJsonArray = getResults(json);
+        JsonArray resultsJsonArray = getOnGoingResults(json);
         List<Participant> participants = new ArrayList<>();
 
         for (int i = 0; i < resultsJsonArray.size(); i++) {
@@ -60,6 +61,26 @@ public class ParticipantDownloadService {
         JsonElement jsonElement = jsonObject.get(RESULTS_NAME);
 
         return jsonElement.getAsJsonArray();
+    }
+
+    private JsonArray getOnGoingResults(String json) {
+        JsonArray resultsJsonArray = getResults(json);
+        JsonArray onGoingResultsJsonArray = new JsonArray();
+
+        for (int i = 0; i < resultsJsonArray.size(); i++) {
+            JsonElement resultJson = resultsJsonArray.get(i);
+
+            if (isOnGoing(resultJson)) {
+                onGoingResultsJsonArray.add(resultJson);
+            }
+        }
+
+        return onGoingResultsJsonArray;
+    }
+
+    private boolean isOnGoing(JsonElement json) {
+        String onGoing = json.getAsJsonObject().get(ON_GOING_NAME).getAsString();
+        return "yes".equals(onGoing);
     }
 
     private Participant getParticipantFromResult(JsonElement json) {
