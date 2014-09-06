@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,9 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.service.ParticipantCreationService;
 import pl.jug.torun.service.ParticipantDownloadService;
+import pl.jug.torun.utils.HeaderProvider;
 
-import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -29,25 +30,21 @@ public class UserController {
 
     @RequestMapping("/users")
     @ResponseBody
-    public String getUsers(@RequestParam Map<String, String> params, HttpServletResponse response) {
-        response.setContentType("application/json;charset=UTF-8");
+    public HttpEntity<String> getUsers(@RequestParam Map<String, String> params) {
+
+        HttpHeaders headers = HeaderProvider.createHeaders();
+
         if (!params.containsKey("appKey") || !params.containsKey("eventId")) {
-            return "{\"error\":\"error\"}";
+            return new HttpEntity<>("{\"error\":\"error\"}", headers);
         }
 
-        //TODO remove mock
-        //FIXME encoding
-//        List<Participant> participants = participantDownloadService.downloadParticipants();
-        Participant p1 = new Participant();
-        p1.setName("Towarzysz Bęgowski");
-        p1.setMemberId("1");
-        Participant p2 = new Participant();
-        p2.setName("Towarzysz Lenin");
-        p2.setMemberId("2");
-        List<Participant> participants = Arrays.asList(p1, p2);
+        String appKey = params.get("appKey");
+        String eventId = params.get("eventId");
+        List<Participant> participants = participantDownloadService.downloadParticipants(appKey, eventId, "name");
+
         participants = participantCreationService.createParticipantsIfNotExists(participants);
 
-        return convertToJson(participants);
+        return new HttpEntity<>(convertToJson(participants), headers);
     }
 
     private String convertToJson(List<Participant> participants) {
