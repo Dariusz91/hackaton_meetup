@@ -1,6 +1,7 @@
 package pl.jug.torun.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.jug.torun.domain.Draw;
 import pl.jug.torun.domain.Participant;
@@ -9,6 +10,7 @@ import pl.jug.torun.repository.DrawRepository;
 
 import java.util.List;
 
+@Service
 public class DrawCreationService {
 
     @Autowired
