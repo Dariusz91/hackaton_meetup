@@ -111,7 +111,7 @@
                 <h4 class="modal-title" id="myModalLabel2">Lista nagród</h4>
             </div>
             <div class="modal-body">
-                <ul class="prize-list">
+                <ul id="prize_list" class="prize-list">
                     <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
                     <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
                     <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a></span></li>
@@ -129,7 +129,7 @@
                                 <input type="text" name="prizeName" value="" class="form-control pull-left" id="inputPrizeName" placeholder="Podaj nazwę nagrody" />
                             </div>
                             <div class="col-md-3">
-                                <a  class="red-button add-prize-button button pull-right" type="submit">Dodaj nagrodę</a>
+                                <a id="btn_add_prize" class="red-button add-prize-button button pull-right" type="submit">Dodaj nagrodę</a>
                             </div>
                         </fieldset>
                     </form>
@@ -146,6 +146,26 @@
     });
     $("#prizeListModal").on('show.bs.modal', function(){
         getPrizes(processPrizes);
+    });
+    $(".fa-plus-square").click(function(){
+       var el = $(this);
+       var prizeId = el.parent().parent().attr("id");
+       var amount = increasePrizeAmount(prizeId);
+        el.empty();
+        el.append(amount);
+    });
+    $(".fa-minus-square").click(function(){
+        var el = $(this);
+        var prizeId = el.parent().parent().attr("id");
+        var amount = decreasePrizeAmount(prizeId);
+        el.empty();
+        el.append(amount);
+    });
+    $("#btn_add_prize").click(function(){
+        var prizeName = $("#inputPrizeName").val();
+        var prize = Object.create(null);
+        prize.name = prizeName;
+        addPrize(processAddPrize, prize);
     });
 </script>
 

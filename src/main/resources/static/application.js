@@ -23,7 +23,7 @@ function getParticipants(callback, eventId, appKey)
 function getPrizes(callback)
 {
     $.ajax({
-        url: "/prizes/get/all",
+        url: "/prize/get/all",
         cache: false,
         type: "GET",
         dataType: "json",
@@ -44,7 +44,7 @@ function getPrizes(callback)
 function addPrize(callback, prize)
 {
     $.ajax({
-        url: "/prizes/add",
+        url: "/prize/add",
         cache: false,
         type: "GET",
         dataType: "json",
@@ -105,6 +105,20 @@ appKey = "781d47243d1f565a64a4e7b354e6358";
 var participants = new Array();
 var prizes = new Array();
 
+function findParticipantIndex(participantId)
+{
+    return participants.findIndex(function(element, index, array){
+       return element.memberId == participantId;
+    });
+}
+
+function findPrizeIndex(prizeId)
+{
+    return prizes.findIndex(function(element, index, array){
+        return element.id == prizeId;
+    });
+}
+
 function processParticipants(participantsJson)
 {
     $("#user_list").empty();
@@ -126,9 +140,28 @@ function processPrizes(prizesJson)
         var prize = Object.create(null);
         prize.id = prizeJson.id;
         prize.name = prizeJson.name;
+        prize.amount = 0;
         prizes.push(prize);
-        $("#prize_list").append("<li id='"+ prize.id +"'>"+prize.name+"<span class='pull-right'><i class='fa fa-minus-square'></i>1<i class='fa fa-plus-square'></i></span></li>");
+        $("#prize_list").append("<li id='"+prize.id+"'>" + prize.name + "<span class='pull-right counter'> <a href=''> <i class='fa fa-minus-square fa-2x'></i></a><span class='prize-amount'>0</span><a href=''><i class='fa fa-plus-square fa-2x'></i></a></span></li>");
     });
+}
+
+function increasePrizeAmount(prizeId)
+{
+    var prizeIndex = findPrizeIndex(prizeId);
+    if(prizes[prizeId].amount < 99) {
+        prizes[prizeId].amount += 1;
+    }
+    return prizes[prizeId].amount;
+}
+
+function decreasePrizeAmount(prizeId)
+{
+    var prizeIndex = findPrizeIndex(prizeId);
+    if(prizes[prizeId].amount > 0) {
+        prizes[prizeId].amount -= 1;
+    }
+    return prizes[prizeId].amount;
 }
 
 function processAddPrize(prizeJson)
@@ -136,8 +169,9 @@ function processAddPrize(prizeJson)
     var prize = Object.create(null);
     prize.id = prizeJson.id;
     prize.name = prizeJson.name;
+    prize.amount = 0;
     prizes.push(prize);
-    $("#prize_list").append("<li id='"+ prize.id +"'>"+prize.name+"<span class='pull-right'><i class='fa fa-minus-square'></i>1<i class='fa fa-plus-square'></i></span></li>");
+    $("#prize_list").append("<li id='"+prize.id+"'>" + prize.name + "<span class='pull-right counter'> <a href=''> <i class='fa fa-minus-square fa-2x'></i></a><span class='prize-amount'>0</span><a href=''><i class='fa fa-plus-square fa-2x'></i></a></span></li>");
 }
 
 function addParticipantsToView(htmlElement)
