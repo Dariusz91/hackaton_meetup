@@ -45,7 +45,7 @@ public class UserController {
         p2.setName("Towarzysz Lenin");
         p2.setMemberId("2");
         List<Participant> participants = Arrays.asList(p1, p2);
-        participantCreationService.createParticipantsIfNotExists(participants);
+        participants = participantCreationService.createParticipantsIfNotExists(participants);
 
         return convertToJson(participants);
     }

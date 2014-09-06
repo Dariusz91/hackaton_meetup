@@ -1,11 +1,13 @@
 package pl.jug.torun.domain;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
 public class Participant extends RootEntity {
 
+    @Column(unique = true, nullable = false)
     private String memberId;
 
     private String name;

@@ -9,8 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.jug.torun.Application;
 import pl.jug.torun.domain.Participant;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,6 +28,13 @@ public class ParticipantRepositoryTest extends AbstractTransactionalJUnit4Spring
 
         assertNotNull(result);
         assertEquals(firstParticipant.getId(), result.getId());
+    }
+
+    @Test
+    public void shouldReturnNullWhenMemberIdNotExists() {
+        Participant result = participantRepository.findByMemberId("nonExisting");
+
+        assertNull(result);
     }
 
     private Participant createParticipant(String memberId) {
