@@ -120,6 +120,8 @@ function yesClick()
     prizes[currentPrizeIndex].amount -= 1;
     accept(null,prizes[currentPrizeIndex].id,drawId,true);
     getNextPrize();
+    var index = findParticipantIndex(winnerId);
+    $("#user_table").append("<tr><td>"+participants[index].name +"</td><td>"+prizes[currentPrizeIndex].name+"</td></tr>")
 }
 function noClick()
 {
