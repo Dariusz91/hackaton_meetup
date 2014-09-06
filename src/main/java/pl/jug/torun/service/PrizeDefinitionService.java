@@ -8,7 +8,7 @@ import pl.jug.torun.domain.PrizeDefinition;
 import pl.jug.torun.repository.PrizeDefinitionRepository;
 
 @Service
-public class PrizeDefinitionCreationService {
+public class PrizeDefinitionService {
 
     @Autowired
     private PrizeDefinitionRepository prizeDefinitionRepository;
@@ -21,6 +21,11 @@ public class PrizeDefinitionCreationService {
         prizeDefinitionRepository.save(prizeDefinition);
 
         return prizeDefinition;
+    }
+
+    @Transactional
+    public void deletePrizeDefinition(Long id) {
+        prizeDefinitionRepository.delete(id);
     }
 
 }

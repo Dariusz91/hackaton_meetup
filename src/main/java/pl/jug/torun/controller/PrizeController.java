@@ -4,12 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.jug.torun.domain.PrizeDefinition;
 import pl.jug.torun.repository.PrizeDefinitionRepository;
-import pl.jug.torun.service.PrizeDefinitionCreationService;
+import pl.jug.torun.service.PrizeDefinitionService;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +16,7 @@ import java.util.Map;
 public class PrizeController {
 
     @Autowired
-    private PrizeDefinitionCreationService prizeDefinitionCreationService;
+    private PrizeDefinitionService prizeDefinitionService;
 
     @Autowired
     private PrizeDefinitionRepository prizeDefinitionRepository;
@@ -31,7 +29,7 @@ public class PrizeController {
         }
 
         String prizeName = params.get("name");
-        PrizeDefinition prize = prizeDefinitionCreationService.createPrizeDefinition(prizeName);
+        PrizeDefinition prize = prizeDefinitionService.createPrizeDefinition(prizeName);
 
         JsonObject prizeJson = new JsonObject();
         prizeJson.addProperty("id", Long.toString(prize.getId()));
@@ -54,5 +52,16 @@ public class PrizeController {
         result.add("prizes", prizesJsonArray);
 
         return result.toString();
+    }
+
+    @RequestMapping(value = "/prize/delete/{id}", method = RequestMethod.POST)
+    public String remove(@PathVariable Long id) {
+        if (prizeDefinitionRepository.exists(id)) {
+            prizeDefinitionService.deletePrizeDefinition(id);
+
+            return "{\"status\":\"success\"}";
+        } else {
+            return "{\"error\":\"id nie istnieje\"}";
+        }
     }
 }
