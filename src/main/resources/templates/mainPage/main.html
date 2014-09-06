@@ -5,7 +5,9 @@
     <title>Hello Spring Boot!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../../static/insstyle.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <script src="../../static/jquery-1.11.1.min.js"></script>
+    <script src="../../static/jquery.popupoverlay.js"></script>
 </head>
 <body>
 
@@ -17,13 +19,19 @@
     <div class="simple-navi-panel">
         <a class="button red-button" href="">Losuj</a>
         <a class="button gray-button pull-right" href="">Lista nagród</a>
-        <a class="button gray-button pull-right" href="">Pobierz uczestników</a>
+        <a class="fadeandscale_open button gray-button pull-right" href="#fadeandscale">Pobierz uczestników</a>
     </div>
+
     <div class="divider">
     </div>
+
     <div class="random-users">
         <h2 id="randomUsersHeader">Wylosowano:</h2>
         <table style="width:100%">
+            <tr>
+                <th>Użytkownik</th>
+                <th>Nagroda</th>
+            </tr>
             <tr>
                 <td>Varcettin</td>
                 <td>iPad</td>
@@ -54,8 +62,8 @@
             </tr>
         </table>
     </div>
-</div>
 
+</div>
 
 <script>
     var eventId = localStorage.getItem("eventId");
@@ -80,7 +88,42 @@
             htmlElement.append(); //TODO Add content
         }
     }
+
+    $(document).ready(function () {
+
+        $('#fadeandscale').popup({
+            pagecontainer: '.container',
+            transition: 'all 0.3s'
+        });
+
+    });
+
 </script>
+
+<!-- Users list Popup -->
+
+<div id="fadeandscale" class="well">
+    <h4>Lista użytkowników</h4>
+    <ul class="fa-ul user-list">
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>John Doe</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Jan Kowalski</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Pan Tadeusz</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Miś Puchatek</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Zorro</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Kasia Kowalska</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Jaś i Małgosia</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Trolo Lolo</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>John Doe</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Jan Kowalski</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Pan Tadeusz</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Miś Puchatek</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Zorro</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Kasia Kowalska</li>
+        <li><i class="fa-li fa fa-arrow-circle-right"></i>Jaś i Małgosia</li>
+    </ul>
+    <a class="fadeandscale_close button orange-button pull-right" href="">Zamknij</a>
+</div>
+
 
 </body>
 </html>
