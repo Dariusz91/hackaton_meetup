@@ -21,9 +21,10 @@ a{
 
 .main-content{
     width:542px;
-    height: 600px;
-    margin:0 auto;
-    padding: 18px 18px 0;
+    margin-left: auto;
+    margin-top: 30px;
+    margin-right: auto;
+    padding: 18px 18px 60px 18px;
     border-radius: 3px;
     background-color: #fff;
     margin-bottom: 18px;
@@ -288,4 +289,14 @@ a{
     font-weight: 700;
     text-align: center;
     display: block;
+}
+
+#event_id{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.list-group-item.active{
+    background-color: #505050 !important;
+    border-color: #444444 !important;
 }
