@@ -12,12 +12,13 @@ import pl.jug.torun.builders.ComponentBuilders;
 import pl.jug.torun.domain.Draw;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.domain.PrizeDefinition;
+import pl.jug.torun.domain.ReceivedPrize;
+import pl.jug.torun.repository.ReceivedPrizeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,6 +27,9 @@ public class PrizeAcceptanceServiceTest extends AbstractTransactionalJUnit4Sprin
 
     @Autowired
     private PrizeAcceptanceService prizeAcceptanceService;
+
+    @Autowired
+    private ReceivedPrizeRepository receivedPrizeRepository;
 
     @Autowired
     private ComponentBuilders builders;
@@ -79,6 +83,16 @@ public class PrizeAcceptanceServiceTest extends AbstractTransactionalJUnit4Sprin
         prizeAcceptanceService.discardParticipant(firstParticipant, draw);
 
         assertTrue(draw.getRemainingPrizes().contains(firstPrize));
+    }
+
+    @Test
+    public void shouldCreateReceivedPrizeAfterAcceptance() {
+        prizeAcceptanceService.acceptParticipant(firstParticipant, draw);
+
+        List<ReceivedPrize> receivedPrizes = receivedPrizeRepository.findAll();
+        assertEquals(1, receivedPrizes.size());
+        assertEquals(firstParticipant, receivedPrizes.get(0).getParticipant());
+        assertEquals(draw, receivedPrizes.get(0).getDraw());
     }
 
     private List<Participant> prepareParticipantsList() {

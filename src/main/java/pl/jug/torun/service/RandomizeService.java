@@ -7,7 +7,6 @@ import pl.jug.torun.domain.Draw;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.domain.PrizeDefinition;
 import pl.jug.torun.domain.ReceivedPrize;
-import pl.jug.torun.repository.DrawRepository;
 import pl.jug.torun.repository.ReceivedPrizeRepository;
 
 import java.util.List;
@@ -19,9 +18,6 @@ import java.util.Random;
 public class RandomizeService {
 
     private Random random = new Random();
-
-    @Autowired
-    private DrawRepository drawRepository;
 
     @Autowired
     private ReceivedPrizeRepository receivedPrizeRepository;
