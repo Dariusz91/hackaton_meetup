@@ -6,7 +6,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ReceivedPrize extends RootEntity {
 
-    private String eventId;
+    @ManyToOne(targetEntity = Draw.class)
+    private Draw draw;
 
     @ManyToOne(targetEntity = Participant.class)
     private Participant participant;
@@ -14,12 +15,12 @@ public class ReceivedPrize extends RootEntity {
     @ManyToOne(targetEntity = PrizeDefinition.class)
     private PrizeDefinition prizeDefinition;
 
-    public String getEventId() {
-        return eventId;
+    public Draw getDraw() {
+        return draw;
     }
 
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
+    public void setDraw(Draw draw) {
+        this.draw = draw;
     }
 
     public Participant getParticipant() {

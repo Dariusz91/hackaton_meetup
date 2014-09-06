@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.jug.torun.Application;
 import pl.jug.torun.builders.ComponentBuilders;
+import pl.jug.torun.domain.Draw;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.domain.PrizeDefinition;
 import pl.jug.torun.domain.ReceivedPrize;
@@ -34,8 +35,12 @@ public class ReceivedPrizeRepositoryTest extends AbstractTransactionalJUnit4Spri
 
     private PrizeDefinition prizeDefinition;
 
+    private Draw draw;
+
     @Before
     public void setup() {
+        draw = componentBuilders.createDraw("1");
+
         sampleParticipant = componentBuilders.createParticipant("1");
         otherParticipant = componentBuilders.createParticipant("2");
 
@@ -44,9 +49,9 @@ public class ReceivedPrizeRepositoryTest extends AbstractTransactionalJUnit4Spri
 
     @Test
     public void shouldFindByParticipant() {
-        ReceivedPrize prize = componentBuilders.createReceivedPrize("1", sampleParticipant, prizeDefinition);
-        componentBuilders.createReceivedPrize("1", otherParticipant, prizeDefinition);
-        componentBuilders.createReceivedPrize("1", otherParticipant, prizeDefinition);
+        ReceivedPrize prize = componentBuilders.createReceivedPrize(draw, sampleParticipant, prizeDefinition);
+        componentBuilders.createReceivedPrize(draw, otherParticipant, prizeDefinition);
+        componentBuilders.createReceivedPrize(draw, otherParticipant, prizeDefinition);
 
         List<ReceivedPrize> results = receivedPrizeRepository.findByParticipant(sampleParticipant);
 
