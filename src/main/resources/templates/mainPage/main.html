@@ -18,7 +18,7 @@
 
 <div class="main-content">
     <div class="simple-navi-panel">
-        <a class="button red-button" href="">Losuj</a>
+        <a class="button red-button" data-toggle="modal" data-target="#winnerModal">Losuj</a>
         <a class="button gray-button pull-right" data-toggle="modal" data-target="#prizeListModal">Lista nagród</a>
         <a class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Pobierz uczestników</a>
     </div>
@@ -135,6 +135,36 @@
                     </form>
                 </div>
                 <a  class="orange-button button pull-right" data-dismiss="modal">Zamknij</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Winner Modal -->
+<div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel3">Wylosowano:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="winner-name">
+                            John Doe
+                        </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="prize-name">
+                            Kalesony
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a  class="gray-button button">Akceptuj</a>
+                <a  class="orange-button button pull-right" data-dismiss="modal">Anuluj</a>
             </div>
         </div>
     </div>
