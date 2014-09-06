@@ -90,6 +90,20 @@ a{
     font-size: 16px;
 }
 
+.gray-button{
+    -webkit-box-shadow: rgba(0,0,0,.47) 0 2px 0 0;
+    box-shadow: rgba(0,0,0,.47) 0 2px 0 0;
+    color: rgba(0,0,0,.67);
+    background: rgba(0,0,0,.1);
+    display: inline-block;
+    border-radius: 3px;
+    padding: 7px 18px 5px;
+    margin-bottom: 18px;
+    font-family: Whitney,helvetica,arial,sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+}
+
 .orange-button{
     box-shadow: #A16530 0px 2px 0px 0px;
     color: rgba(255,255,255,0.9) !important;
@@ -110,6 +124,11 @@ a{
 
 .simple-navi-panel .gray-button:hover{
     background: rgba(0,0,0,.16);
+}
+
+.gray-button:hover{
+    background: rgba(0,0,0,.16);
+    color: rgba(0,0,0,.67) !important;
 }
 
 .simple-navi-panel a{
@@ -253,4 +272,20 @@ a{
 .add-prize-button{
     width: 100%;
     text-align: center;
+}
+
+#winnerModal .winner-name{
+    width: 100%;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+}
+
+#winnerModal .prize-name{
+    width: 100%;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    display: block;
 }
