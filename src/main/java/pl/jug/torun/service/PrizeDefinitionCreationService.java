@@ -14,11 +14,13 @@ public class PrizeDefinitionCreationService {
     private PrizeDefinitionRepository prizeDefinitionRepository;
 
     @Transactional
-    public void createPrizeDefinition(String name) {
+    public PrizeDefinition createPrizeDefinition(String name) {
         PrizeDefinition prizeDefinition = new PrizeDefinition();
         prizeDefinition.setName(name);
 
         prizeDefinitionRepository.save(prizeDefinition);
+
+        return prizeDefinition;
     }
 
 }

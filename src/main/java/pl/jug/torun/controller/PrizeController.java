@@ -24,16 +24,19 @@ public class PrizeController {
     private PrizeDefinitionRepository prizeDefinitionRepository;
 
     @RequestMapping("/prize/add")
-    public int createPrize(@RequestParam Map<String, String> params) {
+    public String createPrize(@RequestParam Map<String, String> params) {
 
         if (!params.containsKey("name")) {
-            return -1;
+            return "{\"error\":\"error\"}";
         }
 
         String prizeName = params.get("name");
-        prizeDefinitionCreationService.createPrizeDefinition(prizeName);
+        PrizeDefinition prize = prizeDefinitionCreationService.createPrizeDefinition(prizeName);
 
-        return 200;
+        JsonObject prizeJson = new JsonObject();
+        prizeJson.addProperty("id", Long.toString(prize.getId()));
+
+        return prizeJson.toString();
     }
 
     @RequestMapping("/prize/get/all")
