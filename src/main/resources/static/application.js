@@ -91,7 +91,6 @@ function showWinner(data, prizeId)
     var index = findParticipantIndex(memberId);
     $(".winner-name").empty();
     $(".winner-name").append(participants[index].name);
-    var prizeIndex = findPrizeIndex(prizeId);
     $(".prize-name").empty();
     $(".prize-name").append(prizes[currentPrizeIndex].name);
 }
@@ -119,9 +118,9 @@ function yesClick()
 {
     prizes[currentPrizeIndex].amount -= 1;
     accept(null,prizes[currentPrizeIndex].id,drawId,true);
-    getNextPrize();
     var index = findParticipantIndex(winnerId);
-    $("#user_table").append("<tr><td>"+participants[index].name +"</td><td>"+prizes[currentPrizeIndex].name+"</td></tr>")
+    $("#user_table").append("<tr><td>"+participants[index].name +"</td><td>"+prizes[currentPrizeIndex].name+"</td></tr>");
+    getNextPrize();
 }
 function noClick()
 {
