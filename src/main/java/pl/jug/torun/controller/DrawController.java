@@ -33,7 +33,7 @@ public class DrawController {
     private PrizeDefinitionRepository prizeDefinitionRepository;
 
     @RequestMapping("/draw/start")
-    public String getPrizesAmount(@RequestBody String json) {
+    public String startDraw(@RequestBody String json) {
 
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = parser.parse(json).getAsJsonObject();

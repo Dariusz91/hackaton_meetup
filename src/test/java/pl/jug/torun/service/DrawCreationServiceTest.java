@@ -33,12 +33,8 @@ public class DrawCreationServiceTest extends AbstractTransactionalJUnit4SpringCo
     @Autowired
     private DrawCreationService drawCreationService;
 
-    private Draw draw;
-
     @Before
     public void setup() {
-        draw = new Draw();
-
         eventId = "1234";
         prizes = new ArrayList<>();
         participants = new ArrayList<>();
