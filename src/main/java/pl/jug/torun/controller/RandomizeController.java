@@ -3,7 +3,10 @@ package pl.jug.torun.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import pl.jug.torun.domain.Draw;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.domain.PrizeDefinition;
@@ -74,12 +77,12 @@ public class RandomizeController {
 
         Long prizeId = Long.valueOf(params.get("prize_id"));
         Long drawId = Long.valueOf(params.get("draw_id"));
-        Long participantId = Long.valueOf(params.get("participant_id"));
+        String participantId = String.valueOf(params.get("participant_id"));
         boolean accepted = Boolean.valueOf(params.get("accepted"));
 
         PrizeDefinition prize = prizeDefinitionRepository.findOne(prizeId);
         Draw draw = drawRepository.findOne(drawId);
-        Participant participant = participantRepository.findOne(participantId);
+        Participant participant = participantRepository.findByMemberId(participantId);
 
         if (prize == null || draw == null || participant == null) {
             return new HttpEntity<>("{\"error\":\"Nie znaleziono losowania, uczestnika lub nagrody\"}", headers);

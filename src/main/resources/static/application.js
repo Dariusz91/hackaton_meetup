@@ -64,8 +64,9 @@ function getWinner(callback, prizeId, drawId)
 
 function accept(callback, prizeId, drawId, memberId, accepted)
 {
+    console.log(accepted);
     $.ajax({
-        url: "/randomize/get_participant",
+        url: "/randomize/accept",
         cache: false,
         type: "GET",
         contentType: 'application/json',
@@ -117,14 +118,14 @@ function getNextPrize()
 function yesClick()
 {
     prizes[currentPrizeIndex].amount -= 1;
-    accept(null,prizes[currentPrizeIndex].id,drawId,true);
+    accept(null,prizes[currentPrizeIndex].id,drawId,winnerId,true);
     var index = findParticipantIndex(winnerId);
     $("#user_table").append("<tr><td>"+participants[index].name +"</td><td>"+prizes[currentPrizeIndex].name+"</td></tr>");
     getNextPrize();
 }
 function noClick()
 {
-    accept(null,prizes[currentPrizeIndex].id,drawId,false);
+    accept(null,prizes[currentPrizeIndex].id,drawId,winnerId,false);
 }
 
 function getPrizes(callback)
