@@ -281,6 +281,7 @@ function processPrizesFromArray()
 
 function setAmountEvents()
 {
+    $(".plus_square").unbind("click");
     $(".plus_square").click(function(event){
         var el = $(this);
         var prizeId = el.parent().parent().attr("id");
@@ -292,6 +293,8 @@ function setAmountEvents()
         amountEl.append(amount);
         event.preventDefault();
     });
+
+    $(".minus_square").unbind("click");
     $(".minus_square").click(function(event){
 
         var el = $(this);
