@@ -269,6 +269,7 @@
     });
     $("#btn_add_prize").click(function(){
         var prizeName = $("#inputPrizeName").val();
+        $("#inputPrizeName").val("");
         var prize = Object.create(null);
         prize.name = prizeName;
         addPrize(processAddPrize, prize);
