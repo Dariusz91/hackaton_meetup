@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.jug.torun.domain.Draw;
+import pl.jug.torun.domain.Event;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.domain.PrizeDefinition;
+import pl.jug.torun.repository.EventRepository;
 import pl.jug.torun.repository.ParticipantRepository;
 import pl.jug.torun.repository.PrizeDefinitionRepository;
 import pl.jug.torun.service.DrawCreationService;
@@ -32,6 +34,9 @@ public class DrawController {
     @Autowired
     private PrizeDefinitionRepository prizeDefinitionRepository;
 
+    @Autowired
+    private EventRepository eventRepository;
+
     @RequestMapping(value = "/draw/start", produces = "application/json;charset=UTF-8")
     public String startDraw(@RequestBody String json) {
 
@@ -42,10 +47,15 @@ public class DrawController {
         JsonArray prizesJsonArray = jsonObject.get("prizes").getAsJsonArray();
         JsonArray participantsJsonArray = jsonObject.get("participants").getAsJsonArray();
 
+        Event event = eventRepository.findByEventId(eventId);
+        if (event == null) {
+            return "{\"error\":\"Nie znaleziono eventu o podanym event id\"}";
+        }
+
         List<PrizeDefinition> prizes = jsonArrayToPrizes(prizesJsonArray);
         List<Participant> participants = jsonArrayToParticipants(participantsJsonArray);
 
-        Draw draw = drawCreationService.createDraw(eventId, prizes, participants);
+        Draw draw = drawCreationService.createDraw(event, prizes, participants);
 
         JsonObject drawJson = new JsonObject();
         drawJson.addProperty("id", Long.toString(draw.getId()));

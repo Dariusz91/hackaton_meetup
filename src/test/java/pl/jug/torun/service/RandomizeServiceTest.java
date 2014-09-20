@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.jug.torun.Application;
 import pl.jug.torun.builders.ComponentBuilders;
 import pl.jug.torun.domain.Draw;
+import pl.jug.torun.domain.Event;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.domain.PrizeDefinition;
 
@@ -54,7 +55,8 @@ public class RandomizeServiceTest extends AbstractTransactionalJUnit4SpringConte
         firstPrize = builders.createPrizeDefinition("test");
         secondPrize = builders.createPrizeDefinition("123");
 
-        draw = builders.createDraw("12345");
+        Event event = builders.createEvent("12345", "test");
+        draw = builders.createDraw(event);
         draw.setRemainingParticipants(prepareParticipantsList());
         draw.setRemainingPrizes(preparePrizeDefinitionList());
 

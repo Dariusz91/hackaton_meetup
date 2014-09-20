@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.jug.torun.domain.Draw;
+import pl.jug.torun.domain.Event;
 import pl.jug.torun.domain.ReceivedPrize;
 import pl.jug.torun.repository.ReceivedPrizeRepository;
 
@@ -34,10 +35,11 @@ public class PrizeHistoryService {
     }
 
     private List<String> getListForDraw(Draw draw, Map<String, List<String>> result) {
-        if (!result.containsKey(draw.getEventId())) {
-            result.put(draw.getEventId(), new ArrayList<>());
+        Event event = draw.getEvent();
+        if (!result.containsKey(event.getName())) {
+            result.put(event.getName(), new ArrayList<>());
         }
 
-        return result.get(draw.getEventId());
+        return result.get(event.getName());
     }
 }
