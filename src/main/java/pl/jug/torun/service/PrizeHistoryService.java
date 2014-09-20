@@ -19,25 +19,25 @@ public class PrizeHistoryService {
     private ReceivedPrizeRepository receivedPrizeRepository;
 
     @Transactional
-    public Map<Draw, List<ReceivedPrize>> createHistoryMap() {
+    public Map<String, List<String>> createHistoryMap() {
         List<ReceivedPrize> receivedPrizes = receivedPrizeRepository.findAll();
 
-        Map<Draw, List<ReceivedPrize>> result = new HashMap<>();
+        Map<String, List<String>> result = new HashMap<>();
 
         for (ReceivedPrize prize : receivedPrizes) {
             Draw draw = prize.getDraw();
-            List<ReceivedPrize> drawList = getListForDraw(draw, result);
-            drawList.add(prize);
+            List<String> drawList = getListForDraw(draw, result);
+            drawList.add(prize.toJson());
         }
 
         return result;
     }
 
-    private List<ReceivedPrize> getListForDraw(Draw draw, Map<Draw, List<ReceivedPrize>> result) {
-        if (!result.containsKey(draw)) {
-            result.put(draw, new ArrayList<>());
+    private List<String> getListForDraw(Draw draw, Map<String, List<String>> result) {
+        if (!result.containsKey(draw.getEventId())) {
+            result.put(draw.getEventId(), new ArrayList<>());
         }
 
-        return result.get(draw);
+        return result.get(draw.getEventId());
     }
 }
