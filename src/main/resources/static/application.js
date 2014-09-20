@@ -32,9 +32,7 @@ function getFirstDraw(eventId)
         data: JSON.stringify({"event_id": eventId, "prizes": prizes, "participants": participants}),
         complete: function(){},
         success: function(data){
-
                 drawId = data.id;
-            console.log(drawId);
         },
         error: function(data, textStatus, xhr){
 
@@ -53,7 +51,6 @@ function getWinner(callback, prizeId, drawId)
         data: {"draw_id": drawId, "prize_id": prizeId},
         complete: function(){},
         success: function(data){
-            console.log(data);
             callback(data, prizeId);
         },
         error: function(data, textStatus, xhr){
@@ -101,7 +98,7 @@ function processGetHistory(data)
 
 function accept(callback, prizeId, drawId, memberId, accepted)
 {
-    console.log(accepted);
+
     $.ajax({
         url: "/randomize/accept",
         cache: false,
@@ -124,8 +121,6 @@ function showWinner(data, prizeId)
 {
     var memberId = data.participant_id;
     winnerId = memberId;
-    console.log(winnerId);
-    console.log(participants);
     var index = findParticipantIndex(memberId);
     $(".winner-name").empty();
     $(".winner-name").append(participants[index].name);
@@ -235,6 +230,38 @@ function getMemberInfo(callback, userId, appKey)
             }
         }
     });
+}
+
+function getEventsList(callback, appKey)
+{
+    $.ajax({
+        url: "/events",
+        cache: false,
+        type: "GET",
+        dataType: "json",
+        data: {"appKey": appKey},
+        complete: function(){},
+        success: function(data){
+            if(callback != null) {
+                callback(data);
+            }
+        },
+        error: function(data, textStatus, xhr){
+            if(callback != null) {
+                callback(false);
+            }
+        }
+    });
+}
+
+function processEventsList(data)
+{
+    for(var i = 0; i < data.events.length; ++i)
+    {
+        var event_id = data.events[i].eventId;
+        var name = data.events[i].name;
+        localStorage.setItem("eventId", event_id);
+    }
 }
 
 function getPhotoFromMemberInfo(memberInfo) {
