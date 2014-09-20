@@ -2,14 +2,8 @@ package pl.jug.torun.builders;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.jug.torun.domain.Draw;
-import pl.jug.torun.domain.Participant;
-import pl.jug.torun.domain.PrizeDefinition;
-import pl.jug.torun.domain.ReceivedPrize;
-import pl.jug.torun.repository.DrawRepository;
-import pl.jug.torun.repository.ParticipantRepository;
-import pl.jug.torun.repository.PrizeDefinitionRepository;
-import pl.jug.torun.repository.ReceivedPrizeRepository;
+import pl.jug.torun.domain.*;
+import pl.jug.torun.repository.*;
 
 @Component
 public class ComponentBuilders {
@@ -25,6 +19,9 @@ public class ComponentBuilders {
 
     @Autowired
     private DrawRepository drawRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     public Participant createParticipant(String memberId) {
         Participant participant = new Participant();
@@ -52,12 +49,21 @@ public class ComponentBuilders {
         return receivedPrize;
     }
 
-    public Draw createDraw(String eventId) {
+    public Draw createDraw(Event event) {
         Draw draw = new Draw();
-        draw.setEventId(eventId);
+        draw.setEvent(event);
 
         drawRepository.save(draw);
         return draw;
+    }
+
+    public Event createEvent(String eventId, String name) {
+        Event event = new Event();
+        event.setEventId(eventId);
+        event.setName(name);
+
+        eventRepository.save(event);
+        return event;
     }
 
 }

@@ -9,10 +9,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.jug.torun.Application;
 import pl.jug.torun.builders.ComponentBuilders;
-import pl.jug.torun.domain.Draw;
-import pl.jug.torun.domain.Participant;
-import pl.jug.torun.domain.PrizeDefinition;
-import pl.jug.torun.domain.ReceivedPrize;
+import pl.jug.torun.domain.*;
 import pl.jug.torun.repository.ReceivedPrizeRepository;
 
 import java.util.ArrayList;
@@ -52,7 +49,8 @@ public class PrizeAcceptanceServiceTest extends AbstractTransactionalJUnit4Sprin
         firstPrize = builders.createPrizeDefinition("test");
         secondPrize = builders.createPrizeDefinition("123");
 
-        draw = builders.createDraw("12345");
+        Event event = builders.createEvent("12345", "12345");
+        draw = builders.createDraw(event);
         draw.setRemainingParticipants(prepareParticipantsList());
         draw.setRemainingPrizes(preparePrizeDefinitionList());
     }
