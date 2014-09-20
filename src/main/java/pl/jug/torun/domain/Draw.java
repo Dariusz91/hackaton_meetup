@@ -3,6 +3,7 @@ package pl.jug.torun.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,8 @@ public class Draw extends RootEntity {
 
     private boolean enabled = true;
 
-    private String eventId;
+    @ManyToOne
+    private Event event;
 
     public List<PrizeDefinition> getRemainingPrizes() {
         return remainingPrizes;
@@ -42,11 +44,11 @@ public class Draw extends RootEntity {
         this.enabled = enabled;
     }
 
-    public String getEventId() {
-        return eventId;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }

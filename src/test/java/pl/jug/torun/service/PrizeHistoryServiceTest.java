@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.jug.torun.Application;
 import pl.jug.torun.builders.ComponentBuilders;
 import pl.jug.torun.domain.Draw;
+import pl.jug.torun.domain.Event;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.domain.PrizeDefinition;
 
@@ -34,8 +35,10 @@ public class PrizeHistoryServiceTest extends AbstractTransactionalJUnit4SpringCo
         Participant participant = builders.createParticipant("1");
         PrizeDefinition prizeDefinition = builders.createPrizeDefinition("test");
 
-        Draw firstDraw = builders.createDraw("1");
-        Draw secondDraw = builders.createDraw("2");
+        Event firstEvent = builders.createEvent("123", "test1");
+        Event secondEvent = builders.createEvent("456", "test2");
+        Draw firstDraw = builders.createDraw(firstEvent);
+        Draw secondDraw = builders.createDraw(secondEvent);
 
         builders.createReceivedPrize(firstDraw, participant, prizeDefinition);
         builders.createReceivedPrize(secondDraw, participant, prizeDefinition);

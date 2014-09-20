@@ -9,10 +9,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.jug.torun.Application;
 import pl.jug.torun.builders.ComponentBuilders;
-import pl.jug.torun.domain.Draw;
-import pl.jug.torun.domain.Participant;
-import pl.jug.torun.domain.PrizeDefinition;
-import pl.jug.torun.domain.ReceivedPrize;
+import pl.jug.torun.domain.*;
 
 import java.util.List;
 
@@ -37,9 +34,12 @@ public class ReceivedPrizeRepositoryTest extends AbstractTransactionalJUnit4Spri
 
     private Draw draw;
 
+    private Event event;
+
     @Before
     public void setup() {
-        draw = componentBuilders.createDraw("1");
+        event = componentBuilders.createEvent("1", "test");
+        draw = componentBuilders.createDraw(event);
 
         sampleParticipant = componentBuilders.createParticipant("1");
         otherParticipant = componentBuilders.createParticipant("2");
