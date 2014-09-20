@@ -18,7 +18,7 @@
 
 <div class="main-content">
     <div class="row">
-        <form method="post" action="" name="prizeForm" id="prizeForm" >
+        <form onsubmit="formSubmit()" action="/draw" name="prizeForm" id="prizeForm" >
             <fieldset>
                 <div class="col-xs-12">
                     <input type="text" name="app_key" value="" class="form-control" id="app_key" placeholder="App key" />
@@ -28,7 +28,7 @@
                     <input type="text" name="event_id" value="" class="form-control" id="event_id" placeholder="Event ID" />
                 </div>
                 <div class="col-xs-12">
-                    <a id="btn_login" style="margin: 0px;" class="red-button add-prize-button button" type="submit">Login</a>
+                    <input id="btn_login" value="Login" style="margin: 0px;" class="red-button add-prize-button button" type="submit" />
                 </div>
             </fieldset>
         </form>
@@ -36,4 +36,15 @@
 </div>
 
 </body>
+<script>
+    $("#event_id").val("201836452");
+    $("#app_key").val("781d47243d1f565a64a4e7b354e6358");
+    function formSubmit()
+    {
+        var appKey = $("#app_key").val();
+        var eventId = $("#event_id").val();
+        localStorage.setItem("appKey", appKey);
+        localStorage.setItem("eventId", eventId);
+    }
+</script>
 </html>

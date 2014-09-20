@@ -206,10 +206,10 @@ function getPhotoFromMemberInfo(memberInfo) {
 }
 
 
-var eventId = localStorage.getItem("eventId");
-eventId = "201836452";
-var appKey = localStorage.getItem("appKey");
-appKey = "781d47243d1f565a64a4e7b354e6358";
+var eventId;// = localStorage.getItem("eventId");
+//eventId = "201836452";
+var appKey;// = localStorage.getItem("appKey");
+//appKey = "781d47243d1f565a64a4e7b354e6358";
 var participants = new Array();
 var prizes = new Array();
 var drawId;

@@ -20,7 +20,7 @@
     <div class="simple-navi-panel">
         <a class="button red-button" data-toggle="modal" data-target="#winnerModal">Losuj</a>
         <a class="button gray-button pull-right" data-toggle="modal" data-target="#prizeListModal">Lista nagród</a>
-        <a id="draw_button" class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Pobierz uczestników</a>
+        <a id="draw_button" class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Lista uczestników</a>
     </div>
 
     <div class="divider">
@@ -216,6 +216,9 @@
 <script>
     var prizesLoaded = false;
     var firstDraw = true;
+    eventId = localStorage.getItem("eventId");
+    appKey = localStorage.getItem("appKey");
+    getParticipants(processParticipants, eventId, appKey);
     $("#yes_button").click(function(event){
         yesClick();
         event.preventDefault();
@@ -269,6 +272,11 @@
     });
     $("#btn_add_prize").click(function(){
         var prizeName = $("#inputPrizeName").val();
+        if(prizeName.trim().length == 0)
+        {
+            return;
+        }
+
         $("#inputPrizeName").val("");
         var prize = Object.create(null);
         prize.name = prizeName;
