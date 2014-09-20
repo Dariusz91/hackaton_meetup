@@ -5,8 +5,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.jug.torun.domain.Participant;
 import pl.jug.torun.service.ParticipantCreationService;
 import pl.jug.torun.service.ParticipantDownloadService;
-import pl.jug.torun.utils.HeaderProvider;
 
 import java.util.List;
 import java.util.Map;
@@ -28,14 +25,12 @@ public class UserController {
     @Autowired
     private ParticipantCreationService participantCreationService;
 
-    @RequestMapping("/users")
+    @RequestMapping(value = "/users", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public HttpEntity<String> getUsers(@RequestParam Map<String, String> params) {
-
-        HttpHeaders headers = HeaderProvider.createHeaders();
+    public String getUsers(@RequestParam Map<String, String> params) {
 
         if (!params.containsKey("appKey") || !params.containsKey("eventId")) {
-            return new HttpEntity<>("{\"error\":\"error\"}", headers);
+            return "{\"error\":\"error\"}";
         }
 
         String appKey = params.get("appKey");
@@ -44,7 +39,7 @@ public class UserController {
 
         participants = participantCreationService.createParticipantsIfNotExists(participants);
 
-        return new HttpEntity<>(convertToJson(participants), headers);
+        return convertToJson(participants);
     }
 
     private String convertToJson(List<Participant> participants) {

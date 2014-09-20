@@ -32,7 +32,7 @@ public class DrawController {
     @Autowired
     private PrizeDefinitionRepository prizeDefinitionRepository;
 
-    @RequestMapping("/draw/start")
+    @RequestMapping(value = "/draw/start", produces = "application/json;charset=UTF-8")
     public String startDraw(@RequestBody String json) {
 
         JsonParser parser = new JsonParser();

@@ -21,7 +21,7 @@ public class PrizeController {
     @Autowired
     private PrizeDefinitionRepository prizeDefinitionRepository;
 
-    @RequestMapping("/prize/add")
+    @RequestMapping(value = "/prize/add", produces = "application/json;charset=UTF-8")
     public String createPrize(@RequestParam Map<String, String> params) {
 
         if (!params.containsKey("name")) {
@@ -37,7 +37,7 @@ public class PrizeController {
         return prizeJson.toString();
     }
 
-    @RequestMapping("/prize/get/all")
+    @RequestMapping(value = "/prize/get/all", produces = "application/json;charset=UTF-8")
     public String getAllPrizes() {
         List<PrizeDefinition> prizes = prizeDefinitionRepository.findAll();
         return convertToJson(prizes);
@@ -54,7 +54,7 @@ public class PrizeController {
         return result.toString();
     }
 
-    @RequestMapping(value = "/prize/delete/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/prize/delete/{id}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String remove(@PathVariable Long id) {
         if (prizeDefinitionRepository.exists(id)) {
             prizeDefinitionService.deletePrizeDefinition(id);

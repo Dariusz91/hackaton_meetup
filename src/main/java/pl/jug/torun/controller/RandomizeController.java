@@ -1,8 +1,6 @@
 package pl.jug.torun.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +13,6 @@ import pl.jug.torun.repository.ParticipantRepository;
 import pl.jug.torun.repository.PrizeDefinitionRepository;
 import pl.jug.torun.service.PrizeAcceptanceService;
 import pl.jug.torun.service.RandomizeService;
-import pl.jug.torun.utils.HeaderProvider;
 
 import java.util.Map;
 
@@ -37,13 +34,12 @@ public class RandomizeController {
     @Autowired
     private ParticipantRepository participantRepository;
 
-    @RequestMapping(value = "/randomize/get_participant")
+    @RequestMapping(value = "/randomize/get_participant", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public HttpEntity<String> randomizeParticipant(@RequestParam Map<String, String> params) {
-        HttpHeaders headers = HeaderProvider.createHeaders();
+    public String randomizeParticipant(@RequestParam Map<String, String> params) {
 
         if (!params.containsKey("prize_id") || !params.containsKey("draw_id")) {
-            return new HttpEntity<>("{\"error\":\"Brakuje draw_id lub prize_id\"}", headers);
+            return "{\"error\":\"Brakuje draw_id lub prize_id\"}";
         }
 
         Long prizeId = Long.valueOf(params.get("prize_id"));
@@ -53,26 +49,25 @@ public class RandomizeController {
         Draw draw = drawRepository.findOne(drawId);
 
         if (prize == null || draw == null) {
-            return new HttpEntity<>("{\"error\":\"Nie znaleziono losowania lub nagrody\"}", headers);
+            return "{\"error\":\"Nie znaleziono losowania lub nagrody\"}";
         }
 
         Participant participant = randomizeService.randomParticipant(draw, prize);
 
-        return getParticipantIdInJsonForm(participant, headers);
+        return getParticipantIdInJsonForm(participant);
     }
 
-    private HttpEntity<String> getParticipantIdInJsonForm(Participant participant, HttpHeaders headers) {
-        return new HttpEntity<>("{\"participant_id\":" + participant.getMemberId() + "}", headers);
+    private String getParticipantIdInJsonForm(Participant participant) {
+        return "{\"participant_id\":" + participant.getMemberId() + "}";
     }
 
-    @RequestMapping(value = "/randomize/accept")
+    @RequestMapping(value = "/randomize/accept", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public HttpEntity<String> acceptAward(@RequestParam Map<String, String> params) {
-        HttpHeaders headers = HeaderProvider.createHeaders();
+    public String acceptAward(@RequestParam Map<String, String> params) {
 
         if (!params.containsKey("prize_id") || !params.containsKey("draw_id") || !params.containsKey("participant_id")
                 || !params.containsKey("accepted")) {
-            return new HttpEntity<>("{\"error\":\"Brakuje draw_id, participant_id, accepted lub prize_id\"}", headers);
+            return "{\"error\":\"Brakuje draw_id, participant_id, accepted lub prize_id\"}";
         }
 
         Long prizeId = Long.valueOf(params.get("prize_id"));
@@ -85,7 +80,7 @@ public class RandomizeController {
         Participant participant = participantRepository.findByMemberId(participantId);
 
         if (prize == null || draw == null || participant == null) {
-            return new HttpEntity<>("{\"error\":\"Nie znaleziono losowania, uczestnika lub nagrody\"}", headers);
+            return "{\"error\":\"Nie znaleziono losowania, uczestnika lub nagrody\"}";
         }
 
         if (accepted) {
@@ -94,6 +89,6 @@ public class RandomizeController {
             prizeAcceptanceService.discardParticipant(participant, draw);
         }
 
-        return new HttpEntity<>("{\"status\": \"success\"}", headers);
+        return "{\"status\": \"success\"}";
     }
 }
