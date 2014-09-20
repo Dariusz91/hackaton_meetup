@@ -305,3 +305,8 @@ a{
     text-align: center;
     font-size: 30px;
 }
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}

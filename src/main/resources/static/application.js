@@ -122,6 +122,10 @@ function yesClick()
     var index = findParticipantIndex(winnerId);
     $("#user_table").append("<tr><td>"+participants[index].name +"</td><td>"+prizes[currentPrizeIndex].name+"</td></tr>");
     getNextPrize();
+    if (currentPrizeIndex == -1) {
+        $("#draw_button").attr("data-target", "#endModal");
+        return;
+    }
 }
 function noClick()
 {

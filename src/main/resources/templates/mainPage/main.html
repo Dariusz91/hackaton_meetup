@@ -5,10 +5,13 @@
     <title>Hello Spring Boot!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../../css/insstyle.css" th:href="@{/css/insstyle.css}" rel="stylesheet"/>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" th:href="@{http://getbootstrap.com/dist/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" th:href="@{http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css"
+          th:href="@{http://getbootstrap.com/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+          th:href="@{http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css}" rel="stylesheet"/>
     <script src="../../jquery-1.11.1.min.js" th:href="@{/jquery-1.11.1.min.js}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
+            th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
     <script src="../../application.js" th:href="@{/application.js}"></script>
 
     <!-- Latest compiled and minified JavaScript -->
@@ -18,9 +21,9 @@
 
 <div class="main-content">
     <div class="simple-navi-panel">
-        <a class="button red-button" data-toggle="modal" data-target="#winnerModal">Losuj</a>
+        <a id="draw_button" class="button red-button" data-toggle="modal" data-target="#beginModal">Start</a>
         <a class="button gray-button pull-right" data-toggle="modal" data-target="#prizeListModal">Lista nagród</a>
-        <a id="draw_button" class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Lista uczestników</a>
+        <a class="button gray-button pull-right" data-toggle="modal" data-target="#userListModal">Lista uczestników</a>
     </div>
 
     <div class="divider">
@@ -36,19 +39,20 @@
 
         </table>
     </div>
-    <br />
+    <br/>
     <a class="button gray-button pull-right" data-toggle="modal" data-target="#historyModal">Zobacz historię losowań</a>
 
 </div>
 
 
-
 <!-- User List Modal -->
-<div class="modal fade" id="userListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="userListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Lista użytkowników</h4>
             </div>
             <div class="modal-body">
@@ -71,45 +75,70 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <a  class="orange-button button" data-dismiss="modal">Zamknij</a>
+                <a class="orange-button button" data-dismiss="modal">Zamknij</a>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Prize List Modal -->
-<div class="modal fade" id="prizeListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="prizeListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel2">Lista nagród</h4>
             </div>
             <div class="modal-body">
                 <ul id="prize_list" class="prize-list">
-                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a> <a href="#"><span class="delete-button"><i class="fa fa-trash fa-2x"></i></span></a></span></li>
-                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i class="fa fa-trash fa-2x"></i></span></a></span></li>
-                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i class="fa fa-trash fa-2x"></i></span></a></span></li>
-                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i class="fa fa-trash fa-2x"></i></span></a></span></li>
-                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i class="fa fa-trash fa-2x"></i></span></a></span></li>
-                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i class="fa fa-trash fa-2x"></i></span></a></span></li>
-                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i class="fa fa-trash fa-2x"></i></span></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i
+                            class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i
+                            class="fa fa-plus-square fa-2x"></i></a> <a href="#"><span class="delete-button"><i
+                            class="fa fa-trash fa-2x"></i></span></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i
+                            class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i
+                            class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i
+                            class="fa fa-trash fa-2x"></i></span></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i
+                            class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i
+                            class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i
+                            class="fa fa-trash fa-2x"></i></span></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i
+                            class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i
+                            class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i
+                            class="fa fa-trash fa-2x"></i></span></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i
+                            class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i
+                            class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i
+                            class="fa fa-trash fa-2x"></i></span></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i
+                            class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i
+                            class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i
+                            class="fa fa-trash fa-2x"></i></span></a></span></li>
+                    <li>Licencja IntelliJ IDEA 13 <span class="pull-right counter"> <a href=""> <i
+                            class="fa fa-minus-square fa-2x"></i></a><span class="prize-amount">1</span><a href=""><i
+                            class="fa fa-plus-square fa-2x"></i></a><a href="#"><span class="delete-button"><i
+                            class="fa fa-trash fa-2x"></i></span></a></span></li>
                 </ul>
             </div>
             <div class="modal-footer">
                 <div class="row">
-                    <form method="post" action="" name="prizeForm" id="prizeForm" >
+                    <form method="post" action="" name="prizeForm" id="prizeForm">
                         <fieldset>
                             <div class="col-md-9">
-                                <input type="text" name="prizeName" value="" class="form-control pull-left" id="inputPrizeName" placeholder="Podaj nazwę nagrody" />
+                                <input type="text" name="prizeName" value="" class="form-control pull-left"
+                                       id="inputPrizeName" placeholder="Podaj nazwę nagrody"/>
                             </div>
                             <div class="col-md-3">
-                                <a id="btn_add_prize" class="red-button add-prize-button button pull-right" type="submit">Dodaj nagrodę</a>
+                                <a id="btn_add_prize" class="red-button add-prize-button button pull-right"
+                                   type="submit">Dodaj nagrodę</a>
                             </div>
                         </fieldset>
                     </form>
                 </div>
-                <a  class="orange-button button pull-right" data-dismiss="modal">Zamknij</a>
+                <a class="orange-button button pull-right" data-dismiss="modal">Zamknij</a>
             </div>
         </div>
     </div>
@@ -120,14 +149,15 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel3">Wylosowano:</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
                         <span class="winner-name">
-                            INICJALIZACJA
+                            Komora maszyny losującej jest pusta. Następuje zwolnienie blokady.
                         </span>
                     </div>
                     <div class="col-md-6">
@@ -138,8 +168,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a id="yes_button" class="gray-button button"  data-dismiss="modal">Zatwierdź</a>
-                <a id="no_button"  class="orange-button button pull-right" data-dismiss="modal">Odrzuć</a>
+                <a id="yes_button" class="gray-button button" data-dismiss="modal">Zatwierdź</a>
+                <a id="no_button" class="orange-button button pull-right" data-dismiss="modal">Odrzuć</a>
             </div>
         </div>
     </div>
@@ -150,7 +180,8 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel4">Historia losowań:</h4>
             </div>
             <div class="modal-body">
@@ -162,7 +193,8 @@
                             </a>
                             <span class="list-group-item">Janko Muzykant <span class="pull-right">Trąbka</span></span>
                             <span class="list-group-item">Ciocia Mariola <span class="pull-right">Trąbka</span></span>
-                            <span class="list-group-item">Cristiano Ronaldo <span class="pull-right">Trąbka</span></span>
+                            <span class="list-group-item">Cristiano Ronaldo <span
+                                    class="pull-right">Trąbka</span></span>
                         </div>
 
                         <div class="list-group">
@@ -170,7 +202,8 @@
                                 Toruń JUG #4
                             </a>
                             <span class="list-group-item">Janko Muzykant <span class="pull-right">Trąbka</span></span>
-                            <span class="list-group-item">Cristiano Ronaldo <span class="pull-right">Trąbka</span></span>
+                            <span class="list-group-item">Cristiano Ronaldo <span
+                                    class="pull-right">Trąbka</span></span>
                         </div>
 
                         <div class="list-group">
@@ -179,35 +212,60 @@
                             </a>
                             <span class="list-group-item">Janko Muzykant <span class="pull-right">Trąbka</span></span>
                             <span class="list-group-item">Ciocia Mariola <span class="pull-right">Trąbka</span></span>
-                            <span class="list-group-item">Cristiano Ronaldo <span class="pull-right">Trąbka</span></span>
+                            <span class="list-group-item">Cristiano Ronaldo <span
+                                    class="pull-right">Trąbka</span></span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <a  class="orange-button button pull-right" data-dismiss="modal">Anuluj</a>
+                <a class="orange-button button pull-right" data-dismiss="modal">Anuluj</a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- History Modal -->
+<!-- End Modal -->
 <div class="modal fade" id="endModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel5">Uwaga:</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                       <span class="end-prize">Brak nagród</span>
+                        <span id="end_prize" class="end-prize">BRAK NAGRÓD</span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <a  class="orange-button button pull-right" data-dismiss="modal">Anuluj</a>
+                <a class="orange-button button pull-right" data-dismiss="modal">OK</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Begin Modal -->
+<div class="modal fade" id="beginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel6">Uwaga:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span id="begin_span" class="end-prize">Komora maszyny losującej jest pusta. Następuje zwolnienie blokady.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="orange-button button pull-right" data-dismiss="modal">OK</a>
             </div>
         </div>
     </div>
@@ -219,61 +277,44 @@
     eventId = localStorage.getItem("eventId");
     appKey = localStorage.getItem("appKey");
     getParticipants(processParticipants, eventId, appKey);
-    $("#yes_button").click(function(event){
+    //$("#draw_button").addClass("disabled");
+    $("#yes_button").click(function (event) {
         yesClick();
         event.preventDefault();
     });
-    $("#no_button").click(function(event){
+    $("#no_button").click(function (event) {
         noClick();
         event.preventDefault();
     });
-    $("#userListModal").on('show.bs.modal', function(){
+    $("#userListModal").on('show.bs.modal', function () {
         getParticipants(processParticipants, eventId, appKey);
     });
-    $("#prizeListModal").on('show.bs.modal', function(){
-        if(prizesLoaded == false)
-        {
+    $("#prizeListModal").on('show.bs.modal', function () {
+        if (prizesLoaded == false) {
             getPrizes(processPrizes);
             prizesLoaded = true;
         }
-        else
-        {
+        else {
             processPrizesFromArray();
         }
     });
-    $("#winnerModal").on('show.bs.modal', function(){
-        if(firstDraw == true) {
-            getFirstDraw(eventId);
-            firstDraw = false;
-            getNextPrize();
-        }
-        else
-        {
-            if(currentPrizeIndex == -1)
-            {
-                $(".winner-name").empty();
-                $(".winner-name").append("BRAK NAGRÓD");
-                $(".prize-name").empty();
-                $("#draw_button").attr("data-target", "#endModal");
-                return;
-            }
-
-            getWinner(showWinner, prizes[currentPrizeIndex].id, drawId);
-            getNextPrize();
-            if(currentPrizeIndex == -1)
-            {
-                $(".winner-name").empty();
-                $(".winner-name").append("BRAK NAGRÓD");
-                $(".prize-name").empty();
-                return;
-            }
-
-        }
+    $("#beginModal").on('show.bs.modal', function () {
+        getFirstDraw(eventId);
+        firstDraw = false;
+        //getNextPrize();
+        $("#draw_button").empty();
+        $("#draw_button").append("Losuj");
+        $("#btn_add_prize").addClass("disabled");
+        $("#draw_button").attr("data-target", "#winnerModal");
     });
-    $("#btn_add_prize").click(function(){
+
+    $("#winnerModal").on('show.bs.modal', function () {
+        getNextPrize();
+        getWinner(showWinner, prizes[currentPrizeIndex].id, drawId);
+    });
+    $("#btn_add_prize").click(function () {
         var prizeName = $("#inputPrizeName").val();
-        if(prizeName.trim().length == 0)
-        {
+        if (prizeName.trim().length == 0) {
             return;
         }
 
