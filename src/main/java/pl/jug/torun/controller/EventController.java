@@ -1,5 +1,7 @@
 package pl.jug.torun.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.jug.torun.domain.Event;
@@ -12,6 +14,8 @@ import java.util.Map;
 @RestController
 public class EventController {
 
+    private static final Gson gson = new Gson();
+
     @Autowired
     private EventDownloadService eventDownloadService;
 
@@ -20,7 +24,7 @@ public class EventController {
 
     private String groupName = "Torun-JUG";
 
-    @RequestMapping(value = "/events", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @RequestMapping(value = "/events", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     public String downloadAllGroupEvents(@RequestParam Map<String, String> params) {
 
@@ -32,7 +36,13 @@ public class EventController {
         List<Event> events = eventDownloadService.downloadEvents(appKey, groupName);
         eventCreationService.createOnlyNewEvents(events);
 
-        return "{\"status\":\"success\"}";
+        return createEventsJson(events);
+    }
+
+    private String createEventsJson(List<Event> events) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("events", gson.toJsonTree(events));
+        return jsonObject.toString();
     }
 
 }
