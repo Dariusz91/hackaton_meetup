@@ -83,6 +83,12 @@ a{
     box-shadow: 0px;
 }
 
+.simple-navi-panel{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
 .simple-navi-panel .red-button:hover{
     background: #d02126;
 }
@@ -160,7 +166,7 @@ a{
 
 .divider{
     border-bottom: 1px solid #ccc;
-    margin-top: 20px;
+    margin-top: 4px;
     margin-bottom: 20px;
 }
 
