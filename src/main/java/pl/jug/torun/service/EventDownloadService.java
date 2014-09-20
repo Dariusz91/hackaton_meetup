@@ -1,6 +1,9 @@
 package pl.jug.torun.service;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -18,8 +21,6 @@ public class EventDownloadService {
     private static final String EVENT_ID_NAME = "id";
     private static final String EVENT_NAME = "name";
 
-    private static Gson gson = new Gson();
-
     private RestTemplate restTemplate;
 
     public EventDownloadService() {
@@ -32,8 +33,8 @@ public class EventDownloadService {
         vars.put("key", key);
         vars.put("group_urlname", groupUrlname);
 
-        return restTemplate.getForObject("http://api.meetup.com/2/events?key={key}&group_urlname={group_urlname}",
-                String.class, vars);
+        return restTemplate.getForObject("http://api.meetup.com/2/events?key={key}&group_urlname={group_urlname}" +
+                "&status=upcoming,past", String.class, vars);
     }
 
     @Transactional
