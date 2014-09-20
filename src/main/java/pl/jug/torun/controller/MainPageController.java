@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainPageController {
 
-    @RequestMapping("/index")
+    @RequestMapping("/draw")
     public String index() {
         return "mainPage/main";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/")
     public String login() {
         return "mainPage/login";
     }
