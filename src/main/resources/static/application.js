@@ -62,6 +62,43 @@ function getWinner(callback, prizeId, drawId)
     });
 }
 
+function getHistory(callback)
+{
+    $.ajax({
+        url: "/history",
+        cache: false,
+        type: "GET",
+        contentType: 'application/json',
+        dataType: "json",
+        complete: function(){},
+        success: function(data){
+            callback(data);
+        },
+        error: function(data, textStatus, xhr){
+
+        }
+    });
+}
+
+function processGetHistory(data)
+{
+    $("#history_main_div").empty();
+
+    jQuery.each(data, function(eventName, winnersList){
+        var winnersHtml = "<div class='list-group'>";
+        winnersHtml += "<a href='#' class='list-group-item active'>"+eventName+"</a>";
+        for(var i = 0; i < winnersList.length; ++i)
+        {
+            var winner = JSON.parse(winnersList[i]);
+            var winnerName = winner['participant']['name'];
+            var prizeName = winner['prizeDefinition']['name'];
+            winnersHtml += "<span class='list-group-item'>"+winnerName+"<span class='pull-right'>"+prizeName+"</span></span>";
+        }
+        $("#history_main_div").append(winnersHtml);
+    });
+
+}
+
 function accept(callback, prizeId, drawId, memberId, accepted)
 {
     console.log(accepted);
