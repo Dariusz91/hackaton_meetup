@@ -3,6 +3,7 @@ package pl.jug.torun.controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import pl.jug.torun.domain.Event;
 import pl.jug.torun.service.EventCreationService;
@@ -22,7 +23,8 @@ public class EventController {
     @Autowired
     private EventCreationService eventCreationService;
 
-    private String groupName = "Torun-JUG";
+    @Value("${group.name:Torun-JUG}")
+    private String groupName;
 
     @RequestMapping(value = "/events", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
