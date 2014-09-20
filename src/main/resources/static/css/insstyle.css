@@ -66,11 +66,21 @@ a{
     font-family: Whitney,helvetica,arial,sans-serif;
     font-weight: 700;
     font-size: 16px;
+    border: 0px;
 }
 
 .red-button:hover{
     background: #d02126;
     color: #fff;
+}
+
+.red-button:active, .red-button:focus{
+    outline: 0;
+}
+
+.red-button:focus{
+    top: 2px;
+    box-shadow: 0px;
 }
 
 .simple-navi-panel .red-button:hover{
