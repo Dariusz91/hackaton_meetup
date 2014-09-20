@@ -273,7 +273,7 @@
 
 <script>
     var prizesLoaded = false;
-    var firstDraw = true;
+
     eventId = localStorage.getItem("eventId");
     appKey = localStorage.getItem("appKey");
     getParticipants(processParticipants, eventId, appKey);
@@ -309,6 +309,7 @@
         $("#draw_button").append("Losuj");
         $("#btn_add_prize").addClass("disabled");
         $("#draw_button").attr("data-target", "#winnerModal");
+
     });
 
     $("#winnerModal").on('show.bs.modal', function () {

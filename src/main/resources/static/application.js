@@ -254,6 +254,7 @@ var appKey;// = localStorage.getItem("appKey");
 var participants = new Array();
 var prizes = new Array();
 var drawId;
+var firstDraw = true;
 
 function findParticipantIndex(participantId)
 {
@@ -324,6 +325,10 @@ function setAmountEvents()
 {
     $(".plus_square").unbind("click");
     $(".plus_square").click(function(event){
+        if(!firstDraw)
+        {
+            return;
+        }
         var el = $(this);
         var prizeId = el.parent().parent().attr("id");
 
@@ -337,7 +342,10 @@ function setAmountEvents()
 
     $(".minus_square").unbind("click");
     $(".minus_square").click(function(event){
-
+        if(!firstDraw)
+        {
+            return;
+        }
         var el = $(this);
         var prizeId = el.parent().parent().attr("id");
         var amount = decreasePrizeAmount(prizeId);
