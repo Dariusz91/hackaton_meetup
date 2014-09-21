@@ -18,27 +18,14 @@
 
 <div class="main-content">
     <div class="row">
-        <form onsubmit="formSubmit()" action="/draw" name="prizeForm" id="prizeForm" >
+        <form action="/draw" name="prizeForm" id="prizeForm" >
             <fieldset>
-                <div class="col-xs-12">
-                    <input type="text" name="app_key" value="" class="form-control" id="app_key" placeholder="App key" />
+                <div id="app_key_div" class="col-xs-12">
+                    <input type="text" name="app_key" value="" class="form-control" id="app_key" placeholder="App key" required="true" />
                 </div>
 
                 <div class="col-xs-12">
-                    <select class="form-control" id="app_keys_list">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-
-                <div class="col-xs-12">
-                    <input type="text" name="event_id" value="" class="form-control" id="event_id" placeholder="Event ID" />
-                </div>
-                <div class="col-xs-12">
-                    <input id="btn_login" value="Login" style="margin: 0px;" class="red-button add-prize-button button" type="submit" />
+                    <input id="btn_login" value="OK" style="margin: 0px;" class="red-button add-prize-button button" type="submit" />
                 </div>
             </fieldset>
         </form>
@@ -48,17 +35,26 @@
 </body>
 <script>
 
-    $("#event_id").val("201836452");
-    $("#app_key").val("781d47243d1f565a64a4e7b354e6358");
-    getEventsList(processEventsList, $("#app_key").val());
-    function formSubmit()
-    {
-        var appKey = $("#app_key").val();
+    //$("#event_id").val("201836452");
+    $("#app_key").val("781d47243d1f565a64a4e7b354e6358"); //TODO remove app_key
+    var firstSubmit = true;
+    $("#prizeForm").submit(function(){
+        if(firstSubmit)
+        {
+            var appKey = $("#app_key").val();
+            localStorage.setItem("appKey", appKey);
+            changeLoginForm();
+            getEventsList(processEventsList, $("#app_key").val());
 
-        var eventId = $("#event_id").val();
-        localStorage.setItem("appKey", appKey);
-        //localStorage.setItem("eventId", eventId);
-        getEventsList(processEventsList, $("#app_key").val());
-    }
+            firstSubmit = false;
+            return false;
+        }
+        else
+        {
+            var eventId = $("#event_ids_list").val();
+            localStorage.setItem("eventId", eventId);
+            return true;
+        }
+    });
 </script>
 </html>

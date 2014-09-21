@@ -254,13 +254,20 @@ function getEventsList(callback, appKey)
     });
 }
 
+var events = [];
+
 function processEventsList(data)
 {
     for(var i = 0; i < data.events.length; ++i)
     {
         var event_id = data.events[i].eventId;
         var name = data.events[i].name;
-        localStorage.setItem("eventId", event_id);
+        var eventObject = Object.create(null);
+        eventObject.id = event_id;
+        eventObject.name = name;
+        events.push(eventObject);
+        $("#event_ids_list").append("<option value='" + eventObject.id + "'>" + eventObject.name + "</option>");
+        //localStorage.setItem("eventId", event_id);
     }
 }
 
@@ -419,6 +426,15 @@ function addParticipantsToView(htmlElement)
         var name = participants[i].name;
         htmlElement.append(); //TODO Add content
     }
+}
+
+
+function changeLoginForm()
+{
+    $("#app_key_div").after("<div class='col-xs-12'><select class='form-control' id='event_ids_list' required='true'></select></div>");
+    $("btn_login").attr("value", "Login");
+    $("#app_key").attr("disabled", "true");
+
 }
 
 
