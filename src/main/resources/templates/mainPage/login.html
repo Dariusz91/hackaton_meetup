@@ -21,7 +21,7 @@
         <form action="/draw" name="prizeForm" id="prizeForm" >
             <fieldset>
                 <div id="app_key_div" class="col-xs-12">
-                    <input type="text" name="app_key" value="" class="form-control" id="app_key" placeholder="App key" required="true" />
+                    <input type="password" name="app_key" value="" class="form-control" id="app_key" th:attr="value=${appKey}" required="true" />
                 </div>
 
                 <div class="col-xs-12">
@@ -36,7 +36,6 @@
 <script>
 
     //$("#event_id").val("201836452");
-    $("#app_key").val("781d47243d1f565a64a4e7b354e6358"); //TODO remove app_key
     var firstSubmit = true;
     $("#prizeForm").submit(function(){
         if(firstSubmit)
