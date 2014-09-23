@@ -21,10 +21,12 @@
         <form action="/draw" name="prizeForm" id="prizeForm" >
             <fieldset>
                 <div id="app_key_div" class="col-xs-12">
+                    <label for="app_key">Meetup API Key:</label>
                     <input type="password" name="app_key" value="" class="form-control" id="app_key" th:attr="value=${appKey}" required="true" />
                 </div>
 
                 <div class="col-xs-12">
+                    <label for="btn_login">Event:</label>
                     <input id="btn_login" value="OK" style="margin: 0px;" class="red-button add-prize-button button" type="submit" />
                 </div>
             </fieldset>

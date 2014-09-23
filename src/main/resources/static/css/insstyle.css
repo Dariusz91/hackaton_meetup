@@ -326,3 +326,7 @@ a.disabled {
     pointer-events: none;
     cursor: default;
 }
+
+label{
+    margin-top: 11px;
+}
