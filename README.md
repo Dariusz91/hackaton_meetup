@@ -25,4 +25,4 @@ Kliknij na obrazek aby zobaczyć w pełnej rozdzielczości
 [![Screen 2](http://i.imgur.com/m3xjIg9s.jpg)](http://i.imgur.com/m3xjIg9.jpg)
 [![Screen 3](http://i.imgur.com/73vXIJBs.jpg)](http://i.imgur.com/73vXIJB.jpg)
 [![Screen 4](http://i.imgur.com/IFFs4xbs.jpg)](http://i.imgur.com/IFFs4xb.jpg)
-[![Screen 5](http://i.imgur.com/dcGverms.jpg)](http://i.imgur.com/dcGverm.jpg)
+[![Screen 5](http://i.imgur.com/cNJ1MIms.jpg)](http://i.imgur.com/cNJ1MIm.jpg)
