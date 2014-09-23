@@ -17,3 +17,12 @@ Na pierwszym ekranie jesteśmy proszeni o podanie Meetup API key, aby nie robić
 ##Jak to uruchomić?
 Zanim uruchomimy projekt należy mieć zainstalowane JDK w wersji 8. Budowanie jest w pełni zautomatyzowane przez Gradle, więc uruchamiamy go wpisując komendę
   `./gradlew run`
+
+##Screeny
+Kliknij na obrazek aby zobaczyć w pełnej rozdzielczości
+
+[![Screen 1](http://i.imgur.com/A9rCbOPs.jpg)](http://i.imgur.com/A9rCbOP.png)
+[![Screen 2](http://i.imgur.com/m3xjIg9s.jpg)](http://i.imgur.com/m3xjIg9.jpg)
+[![Screen 3](http://i.imgur.com/73vXIJBs.jpg)](http://i.imgur.com/73vXIJB.jpg)
+[![Screen 4](http://i.imgur.com/IFFs4xbs.jpg)](http://i.imgur.com/IFFs4xb.jpg)
+[![Screen 5](http://i.imgur.com/dcGverms.jpg)](http://i.imgur.com/dcGverm.jpg)
